@@ -616,14 +616,14 @@ class LinkedInExtractorApp:
                 st.markdown("</div>", unsafe_allow_html=True)
 
     def decision_maker_pipeline_page(self):
-        """Automated pipeline: Keyword Search → Author Profile Extraction → Merge → Filter → Export"""
-        st.markdown("<div class='section-header'>Decision-Maker Pipeline (Fully Automated)</div>", unsafe_allow_html=True)
-        st.caption("Enter a keyword and run the full LinkedIn workflow: search posts, extract authors, likers, commenters, merge, filter for decision-makers, and export.")
+        """Simplified pipeline: Keyword Search → Filter by Headline → Export"""
+        st.markdown("<div class='section-header'>Decision-Maker Pipeline (Simple)</div>", unsafe_allow_html=True)
+        st.caption("Enter a keyword to search LinkedIn posts, filter for decision-makers by headline, and export the results.")
         keyword = st.text_input("Enter keyword(s) for LinkedIn post search", key="pipeline_keyword_auto")
         search_limit = st.number_input("Number of posts to extract", min_value=1, max_value=100, value=10, step=1, key="pipeline_search_limit_auto")
         run_pipeline = st.button("Run Pipeline", key="pipeline_run_all")
         if run_pipeline and keyword:
-            with st.spinner("Running full pipeline. This may take several minutes..."):
+            with st.spinner("Running pipeline. This may take a minute..."):
                 # Step 1: Keyword Search
                 automation_id = "64099c6e0936e46db5d76f4c"
                 connected_account_id = self._get_automation_and_account("keyword search")[1]
@@ -651,222 +651,39 @@ class LinkedInExtractorApp:
                 posts_df = pd.json_normalize(final_result["data"])
                 posts_df = self.remove_empty_columns(posts_df)
 
-                # Automatically download post data after extraction
-                output_dir = "outputs"
-                os.makedirs(output_dir, exist_ok=True)
-                post_data_path = os.path.join(output_dir, "extracted_posts.xlsx")
-                with pd.ExcelWriter(post_data_path, engine="openpyxl") as writer:
-                    posts_df.to_excel(writer, sheet_name="posts", index=False)
-                st.success(f"Post data saved to {post_data_path}. Click below to download.")
-                with open(post_data_path, "rb") as f:
-                    st.download_button(
-                        label="Download extracted posts as Excel",
-                        data=f,
-                        file_name="extracted_posts.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
-
-                # Step 2: Extract Author Profiles
-                col_candidates = [c for c in posts_df.columns if c.lower() == "lipublicprofileurl"]
-                if not col_candidates:
-                    st.error("No 'liPublicProfileURL' column found in the posts data. Cannot proceed.")
-                    return
-                col = col_candidates[0]
-                author_urls = posts_df[col].dropna().unique().tolist()
-                author_profiles = []
-                for url in author_urls:
-                    result = self.linkedin_api.run_automation(
-                        name="Pipeline Author Profile Extraction",
-                        description="Pipeline: Extract author profile",
-                        automation_id="63f48ee97022e05c116fc798",
-                        connected_account_id=self._get_automation_and_account("profile extraction")[1],
-                        timezone="Asia/Kolkata",
-                        inputs={"liProfileUrl": url}
-                    )
-                    data = result.get("data", {})
-                    execution_id = data.get("id") or data.get("workflowId")
-                    final_result = None
-                    if execution_id:
-                        for _ in range(60):
-                            final_result = self.linkedin_api.get_execution_result(execution_id)
-                            if final_result.get("data"):
-                                break
-                            time.sleep(1)
-                    if final_result and "data" in final_result:
-                        author_profiles.append(final_result["data"])
-                author_profiles_df = self.expand_profiles_to_df(author_profiles)
-                author_profiles_df = self.remove_empty_columns(author_profiles_df)
-                # Step 3: Extract Likers
-                post_urls = posts_df['postUrl'].dropna().unique().tolist() if 'postUrl' in posts_df else []
-                all_likers = []
-                for url in post_urls:
-                    result = self.linkedin_api.run_automation(
-                        name="Pipeline Post Likers Extraction",
-                        description="Pipeline: Extract post likers",
-                        automation_id="63fc575f7022e05c11bba145",
-                        connected_account_id=self._get_automation_and_account("post likers extractor")[1],
-                        timezone="Asia/Kolkata",
-                        inputs={"liPostUrl": url}
-                    )
-                    data = result.get("data", {})
-                    execution_id = data.get("id") or data.get("workflowId")
-                    final_result = None
-                    if execution_id:
-                        for _ in range(60):
-                            final_result = self.linkedin_api.get_execution_result(execution_id)
-                            if final_result.get("data"):
-                                break
-                            time.sleep(1)
-                    if final_result and "data" in final_result:
-                        likers = final_result["data"]
-                        if isinstance(likers, list):
-                            all_likers.extend(likers)
-                        elif isinstance(likers, dict):
-                            all_likers.append(likers)
-                likers_df = pd.json_normalize(all_likers)
-                likers_df = self.remove_empty_columns(likers_df)
-                # Step 4: Extract Commenters
-                all_commenters = []
-                for url in post_urls:
-                    result = self.linkedin_api.run_automation(
-                        name="Pipeline Post Commenters Extraction",
-                        description="Pipeline: Extract post commenters",
-                        automation_id="63fc8cd27022e05c113c3c73",
-                        connected_account_id=self._get_automation_and_account("post commenters extractor")[1],
-                        timezone="Asia/Kolkata",
-                        inputs={"liPostUrl": url}
-                    )
-                    data = result.get("data", {})
-                    execution_id = data.get("id") or data.get("workflowId")
-                    final_result = None
-                    if execution_id:
-                        for _ in range(60):
-                            final_result = self.linkedin_api.get_execution_result(execution_id)
-                            if final_result.get("data"):
-                                break
-                            time.sleep(1)
-                    if final_result and "data" in final_result:
-                        commenters = final_result["data"]
-                        if isinstance(commenters, list):
-                            all_commenters.extend(commenters)
-                        elif isinstance(commenters, dict):
-                            all_commenters.append(commenters)
-                commenters_df = pd.json_normalize(all_commenters)
-                commenters_df = self.remove_empty_columns(commenters_df)
-                # Step 5: Liker Profile Scraping
-                liker_urls = likers_df['profileUrl'].dropna().unique().tolist() if 'profileUrl' in likers_df else []
-                liker_profiles = []
-                for url in liker_urls:
-                    result = self.linkedin_api.run_automation(
-                        name="Pipeline Liker Profile Extraction",
-                        description="Pipeline: Extract liker profile",
-                        automation_id="63f48ee97022e05c116fc798",
-                        connected_account_id=self._get_automation_and_account("profile extraction")[1],
-                        timezone="Asia/Kolkata",
-                        inputs={"liProfileUrl": url}
-                    )
-                    data = result.get("data", {})
-                    execution_id = data.get("id") or data.get("workflowId")
-                    final_result = None
-                    if execution_id:
-                        for _ in range(60):
-                            final_result = self.linkedin_api.get_execution_result(execution_id)
-                            if final_result.get("data"):
-                                break
-                            time.sleep(1)
-                    if final_result and "data" in final_result:
-                        liker_profiles.append(final_result["data"])
-                liker_profiles_df = self.expand_profiles_to_df(liker_profiles)
-                liker_profiles_df = self.remove_empty_columns(liker_profiles_df)
-                # Step 6: Commenter Profile Scraping
-                commenter_urls = commenters_df['profileUrl'].dropna().unique().tolist() if 'profileUrl' in commenters_df else []
-                commenter_profiles = []
-                for url in commenter_urls:
-                    result = self.linkedin_api.run_automation(
-                        name="Pipeline Commenter Profile Extraction",
-                        description="Pipeline: Extract commenter profile",
-                        automation_id="63f48ee97022e05c116fc798",
-                        connected_account_id=self._get_automation_and_account("profile extraction")[1],
-                        timezone="Asia/Kolkata",
-                        inputs={"liProfileUrl": url}
-                    )
-                    data = result.get("data", {})
-                    execution_id = data.get("id") or data.get("workflowId")
-                    final_result = None
-                    if execution_id:
-                        for _ in range(60):
-                            final_result = self.linkedin_api.get_execution_result(execution_id)
-                            if final_result.get("data"):
-                                break
-                            time.sleep(1)
-                    if final_result and "data" in final_result:
-                        commenter_profiles.append(final_result["data"])
-                commenter_profiles_df = self.expand_profiles_to_df(commenter_profiles)
-                commenter_profiles_df = self.remove_empty_columns(commenter_profiles_df)
-                # Step 7: Merge All Profile Data
-                merged_df = pd.concat([author_profiles_df, liker_profiles_df, commenter_profiles_df], ignore_index=True)
-                merged_df = merged_df.drop_duplicates(subset=[c for c in merged_df.columns if 'linkedin' in c.lower() or 'profileurl' in c.lower() or 'url' in c.lower()])
-
-                # Save raw data (before filtering) to session state
-                raw_data_buffer = io.BytesIO()
-                with pd.ExcelWriter(raw_data_buffer, engine="openpyxl") as writer:
-                    merged_df.to_excel(writer, sheet_name="raw_data", index=False)
-                raw_data_buffer.seek(0)
-                st.session_state["raw_data_buffer"] = raw_data_buffer.getvalue()
-                st.session_state["raw_data_filename"] = "raw_data.xlsx"
-
-                # Step 8: Filter Decision-Makers (only using 'liProfileHeadline' column)
+                # Step 2: Filter Decision-Makers (only using 'liProfileHeadline' column)
                 keywords = [
                     "founder", "cxo", "ceo", "coo", "cio", "cto", "chro", "cpo", "cro", "CISO", "clo", "cmo", "director", "vp", "head", "decision", "leader", "Manager", "executive", "owner", "president", "Co-Founder", "Chief", "Head of", "Lead", "Global", "Regional", "Senior", "Principal"
                 ]
-                # Ensure the column exists and is string type
-                if "liProfileHeadline" in merged_df.columns:
-                    merged_df["liProfileHeadline"] = merged_df["liProfileHeadline"].astype(str).str.lower()
-                    mask = merged_df["liProfileHeadline"].apply(lambda x: any(k.lower() in x for k in keywords))
-                    filtered_df = merged_df[mask]
+                if "liProfileHeadline" in posts_df.columns:
+                    posts_df["liProfileHeadline"] = posts_df["liProfileHeadline"].astype(str).str.lower()
+                    mask = posts_df["liProfileHeadline"].apply(lambda x: any(k.lower() in x for k in keywords))
+                    filtered_df = posts_df[mask]
                 else:
                     st.warning("'liProfileHeadline' column not found. No filtering applied.")
-                    filtered_df = merged_df
+                    filtered_df = posts_df
                 # Define important columns in the specified order
                 important_columns = [
                     "liPublicProfileUrl", "firstName", "lastName", "companyName", "liCompanyPublicUrl", "headcountRange", "jobLocationArea", "jobTitle", "jobTenure",
-                    "profileDescription", "headline", "emailAddressPersonal", "profileLocationCountry", "profileLocationCity", "profileLocationArea", "locationCountryCode", "industry"
+                    "profileDescription", "liProfileHeadline", "emailAddressPersonal", "profileLocationCountry", "profileLocationCity", "profileLocationArea", "locationCountryCode", "industry"
                 ]
-                # Filter to only important columns that exist in the DataFrame
                 display_df = filtered_df[[col for col in important_columns if col in filtered_df.columns]]
                 st.success(f"Pipeline complete! Filtered {len(filtered_df)} high-level profiles.")
                 st.dataframe(display_df, use_container_width=True)
 
-                # Automatically download final decision-maker data
-                final_data_path = os.path.join(os.path.expanduser("~"), "Downloads", "decision_makers.xlsx")
-                with pd.ExcelWriter(final_data_path, engine="openpyxl") as writer:
+                # Download filtered data
+                output_dir = "outputs"
+                os.makedirs(output_dir, exist_ok=True)
+                filtered_data_path = os.path.join(output_dir, "decision_makers.xlsx")
+                with pd.ExcelWriter(filtered_data_path, engine="openpyxl") as writer:
                     filtered_df.to_excel(writer, sheet_name="decision_makers", index=False)
-                st.success(f"Decision-maker data automatically downloaded to {final_data_path}")
-
-                # Export full filtered data
-                excel_buffer_full = io.BytesIO()
-                with pd.ExcelWriter(excel_buffer_full, engine="openpyxl") as writer:
-                    filtered_df.to_excel(writer, sheet_name="decision_makers", index=False)
-                excel_buffer_full.seek(0)
-                # Export only important columns
-                excel_buffer_important = io.BytesIO()
-                with pd.ExcelWriter(excel_buffer_important, engine="openpyxl") as writer:
-                    display_df.to_excel(writer, sheet_name="important_columns", index=False)
-                excel_buffer_important.seek(0)
-                # Store in session_state to persist until navigation or new search
-                st.session_state["decision_makers_full_buffer"] = excel_buffer_full.getvalue()
-                st.session_state["decision_makers_important_buffer"] = excel_buffer_important.getvalue()
-                st.session_state["decision_makers_full_filename"] = "decision_makers_full.xlsx"
-                st.session_state["decision_makers_important_filename"] = "decision_makers_important_columns.xlsx"
-
-            # Provide a single 'Raw Data Download' button
-            if "raw_data_buffer" in st.session_state:
-                st.download_button(
-                    label="Download Raw Data",
-                    data=st.session_state["raw_data_buffer"],
-                    file_name=st.session_state["raw_data_filename"],
-                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                )
+                with open(filtered_data_path, "rb") as f:
+                    st.download_button(
+                        label="Download filtered decision-makers as Excel",
+                        data=f,
+                        file_name="decision_makers.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
 
     def run(self):
         """Run the Streamlit application"""

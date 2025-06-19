@@ -57,7 +57,8 @@ class LinkedInExtractorApp:
             ("Post Extraction", "Extract data from a specific LinkedIn post"),
             ("Profile Extraction", "Extract data from a LinkedIn profile"),
             ("Company Extraction", "Extract data from a LinkedIn company page"),
-            ("Decision-Maker Pipeline", "End-to-end workflow: search, extract, merge, filter, export")
+            ("Decision-Maker Pipeline", "End-to-end workflow: search, extract, merge, filter, export"),
+            ("Profile Batch Extraction", "Upload an Excel file and extract profile data for all listed URLs") ,
         ]
         selected_page = st.session_state.get("selected_page", pages[0][0])
         for page, tooltip in pages:
@@ -685,6 +686,109 @@ class LinkedInExtractorApp:
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
 
+    def profile_batch_extraction_page(self):
+        """Upload an Excel file, extract profile data for all liPublicProfileUrl, and merge results."""
+        st.markdown("<div class='section-header'>Profile Batch Extraction</div>", unsafe_allow_html=True)
+        st.caption("Upload an Excel file (from Decision-Maker Pipeline), extract profile data for all listed URLs, and download the merged result.")
+        uploaded_file = st.file_uploader("Upload Excel file with 'liPublicProfileUrl' column", type=["xlsx"])
+        if uploaded_file:
+            try:
+                input_df = pd.read_excel(uploaded_file)
+            except Exception as e:
+                st.error(f"Failed to read Excel file: {e}")
+                return
+            # Accept 'liPublicProfileUrl', 'liPublicProfileURL', or 'Input Profile URL' (case-insensitive)
+            col_candidates = [col for col in input_df.columns if isinstance(col, str) and col.lower() in ["lipublicprofileurl", "input profile url"]]
+            if not col_candidates:
+                st.error("The uploaded file must contain a 'liPublicProfileUrl', 'liPublicProfileURL', or 'Input Profile URL' column.")
+                return
+            # Use exact column names for merging
+            if "liPublicProfileURL" not in input_df.columns:
+                st.error("The uploaded file must contain a 'liPublicProfileURL' column.")
+                return
+            url_col_input = "liPublicProfileURL"
+            url_col_output = "Input Profile URL"
+            profile_urls = input_df[url_col_input].dropna().unique().tolist()
+            st.info(f"Found {len(profile_urls)} unique profile URLs. Starting extraction...")
+            profile_data = []
+            extraction_errors = []
+            for idx, url in enumerate(profile_urls):
+                st.write(f"Extracting profile {idx+1}/{len(profile_urls)}: {url}")
+                try:
+                    result = self.linkedin_api.run_automation(
+                        name="Batch Profile Extraction",
+                        description="Batch: Extract profile data",
+                        automation_id="63f48ee97022e05c116fc798",
+                        connected_account_id=self._get_automation_and_account("profile extraction")[1],
+                        timezone="Asia/Kolkata",
+                        inputs={"liProfileUrl": url}
+                    )
+                    data = result.get("data", {})
+                    execution_id = data.get("id") or data.get("workflowId")
+                    final_result = None
+                    if execution_id:
+                        for _ in range(60):
+                            final_result = self.linkedin_api.get_execution_result(execution_id)
+                            if final_result.get("data"):
+                                break
+                            time.sleep(1)
+                    if final_result and "data" in final_result:
+                        profile_data.append(final_result["data"])
+                    else:
+                        extraction_errors.append(f"No data for {url}")
+                        st.error(f"Profile extraction failed or limit reached for: {url}. Try again later.")
+                        break
+                except Exception as e:
+                    extraction_errors.append(f"Error for {url}: {e}")
+                    st.error(f"Profile extraction failed or limit reached for: {url}. Try again later. Error: {e}")
+                    break
+            if extraction_errors:
+                st.warning("Some profile extractions failed:")
+                for err in extraction_errors:
+                    st.text(err)
+            if profile_data:
+                # Use robust expansion to ensure all profile fields become columns
+                profiles_df = self.expand_profiles_to_df(profile_data)
+                profiles_df = self.remove_empty_columns(profiles_df)
+                # Prefix all columns in profiles_df with 'profile_' except for the profile URL column
+                profiles_df = profiles_df.rename(columns={
+                    col: (f"profile_{col}" if col.lower() != url_col_input.lower() else col)
+                    for col in profiles_df.columns
+                })
+                n = min(len(input_df), len(profiles_df))
+                merged_df = pd.concat([input_df.iloc[:n].reset_index(drop=True), profiles_df.iloc[:n].reset_index(drop=True)], axis=1)
+                # Remove duplicate columns, keeping the first occurrence (input columns take precedence)
+                merged_df = merged_df.loc[:, ~merged_df.columns.duplicated()]
+                st.success(f"Extracted and merged {len(merged_df)} profiles (order-wise, expanded columns, no duplicate columns).")
+                st.dataframe(merged_df, use_container_width=True)
+                output_dir = "outputs"
+                os.makedirs(output_dir, exist_ok=True)
+                merged_data_path = os.path.join(output_dir, "batch_profiles_merged.xlsx")
+                with pd.ExcelWriter(merged_data_path, engine="openpyxl") as writer:
+                    merged_df.to_excel(writer, sheet_name="profiles", index=False)
+                with open(merged_data_path, "rb") as f:
+                    st.download_button(
+                        label="Download merged profiles as Excel",
+                        data=f,
+                        file_name="batch_profiles_merged.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
+            else:
+                st.info("No profile data extracted. Only input data is available for download.")
+                st.dataframe(input_df, use_container_width=True)
+                output_dir = "outputs"
+                os.makedirs(output_dir, exist_ok=True)
+                input_data_path = os.path.join(output_dir, "batch_profiles_input_only.xlsx")
+                with pd.ExcelWriter(input_data_path, engine="openpyxl") as writer:
+                    input_df.to_excel(writer, sheet_name="input", index=False)
+                with open(input_data_path, "rb") as f:
+                    st.download_button(
+                        label="Download input data as Excel",
+                        data=f,
+                        file_name="batch_profiles_input_only.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
+
     def run(self):
         """Run the Streamlit application"""
         self.setup_page()
@@ -699,6 +803,8 @@ class LinkedInExtractorApp:
             self.company_extraction_page()
         elif selected_page == "Decision-Maker Pipeline":
             self.decision_maker_pipeline_page()
+        elif selected_page == "Profile Batch Extraction":
+            self.profile_batch_extraction_page()
 
 if __name__ == "__main__":
     app = LinkedInExtractorApp()

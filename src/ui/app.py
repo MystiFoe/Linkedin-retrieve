@@ -616,7 +616,7 @@ class LinkedInExtractorApp:
                 st.markdown("</div>", unsafe_allow_html=True)
 
     def decision_maker_pipeline_page(self):
-        """Automated pipeline: Keyword Search → Author/Liker/Commenter Profile Extraction → Merge → Filter → Export"""
+        """Automated pipeline: Keyword Search → Author Profile Extraction → Merge → Filter → Export"""
         st.markdown("<div class='section-header'>Decision-Maker Pipeline (Fully Automated)</div>", unsafe_allow_html=True)
         st.caption("Enter a keyword and run the full LinkedIn workflow: search posts, extract authors, likers, commenters, merge, filter for decision-makers, and export.")
         keyword = st.text_input("Enter keyword(s) for LinkedIn post search", key="pipeline_keyword_auto")
@@ -652,10 +652,19 @@ class LinkedInExtractorApp:
                 posts_df = self.remove_empty_columns(posts_df)
 
                 # Automatically download post data after extraction
-                post_data_path = os.path.join(os.path.expanduser("~"), "Downloads", "extracted_posts.xlsx")
+                output_dir = "outputs"
+                os.makedirs(output_dir, exist_ok=True)
+                post_data_path = os.path.join(output_dir, "extracted_posts.xlsx")
                 with pd.ExcelWriter(post_data_path, engine="openpyxl") as writer:
                     posts_df.to_excel(writer, sheet_name="posts", index=False)
-                st.success(f"Post data automatically downloaded to {post_data_path}")
+                st.success(f"Post data saved to {post_data_path}. Click below to download.")
+                with open(post_data_path, "rb") as f:
+                    st.download_button(
+                        label="Download extracted posts as Excel",
+                        data=f,
+                        file_name="extracted_posts.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
 
                 # Step 2: Extract Author Profiles
                 col_candidates = [c for c in posts_df.columns if c.lower() == "lipublicprofileurl"]

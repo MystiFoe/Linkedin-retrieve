@@ -815,15 +815,18 @@ class LinkedInExtractorApp:
                 st.session_state["raw_data_buffer"] = raw_data_buffer.getvalue()
                 st.session_state["raw_data_filename"] = "raw_data.xlsx"
 
-                # Step 8: Filter Decision-Makers
-                keywords = ["founder", "cxo", "ceo", "coo","cio","cto","chro","cpo","cro","CISO","clo","cmo","director", "vp", "head", "decision", "leader", "Manager", "executive", "owner", "president", "Co-Founder", "Chief", "Head of", "Lead"]
-                # Ensure all columns in str_cols are converted to strings before applying .str operations
-                str_cols = merged_df.select_dtypes(include=["object", "string"]).columns
-                merged_df[str_cols] = merged_df[str_cols].applymap(lambda x: str(x) if not pd.isna(x) else '')
-                combined = merged_df[str_cols].apply(lambda x: ' '.join([str(i) if not pd.isna(i) else '' for i in x]), axis=1)
-                combined = combined.astype(str).str.lower()
-                mask = combined.apply(lambda x: any(k in x for k in keywords))
-                filtered_df = merged_df[mask]
+                # Step 8: Filter Decision-Makers (only using 'liProfileHeadline' column)
+                keywords = [
+                    "founder", "cxo", "ceo", "coo", "cio", "cto", "chro", "cpo", "cro", "CISO", "clo", "cmo", "director", "vp", "head", "decision", "leader", "Manager", "executive", "owner", "president", "Co-Founder", "Chief", "Head of", "Lead", "Global", "Regional", "Senior", "Principal"
+                ]
+                # Ensure the column exists and is string type
+                if "liProfileHeadline" in merged_df.columns:
+                    merged_df["liProfileHeadline"] = merged_df["liProfileHeadline"].astype(str).str.lower()
+                    mask = merged_df["liProfileHeadline"].apply(lambda x: any(k.lower() in x for k in keywords))
+                    filtered_df = merged_df[mask]
+                else:
+                    st.warning("'liProfileHeadline' column not found. No filtering applied.")
+                    filtered_df = merged_df
                 # Define important columns in the specified order
                 important_columns = [
                     "liPublicProfileUrl", "firstName", "lastName", "companyName", "liCompanyPublicUrl", "headcountRange", "jobLocationArea", "jobTitle", "jobTenure",

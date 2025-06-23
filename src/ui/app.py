@@ -742,12 +742,8 @@ class LinkedInExtractorApp:
                     extraction_errors.append(f"Error for {url}: {e}")
                     st.error(f"Profile extraction failed or limit reached for: {url}. Try again later. Error: {e}")
                     break
-            if extraction_errors:
-                st.warning("Some profile extractions failed:")
-                for err in extraction_errors:
-                    st.text(err)
+
             if profile_data:
-                # Use robust expansion to ensure all profile fields become columns
                 profiles_df = self.expand_profiles_to_df(profile_data)
                 profiles_df = self.remove_empty_columns(profiles_df)
                 # Prefix all columns in profiles_df with 'profile_' except for the profile URL column
@@ -755,17 +751,34 @@ class LinkedInExtractorApp:
                     col: (f"profile_{col}" if col.lower() != url_col_input.lower() else col)
                     for col in profiles_df.columns
                 })
+
                 n = min(len(input_df), len(profiles_df))
                 merged_df = pd.concat([input_df.iloc[:n].reset_index(drop=True), profiles_df.iloc[:n].reset_index(drop=True)], axis=1)
-                # Remove duplicate columns, keeping the first occurrence (input columns take precedence)
                 merged_df = merged_df.loc[:, ~merged_df.columns.duplicated()]
+
                 st.success(f"Extracted and merged {len(merged_df)} profiles (order-wise, expanded columns, no duplicate columns).")
-                st.dataframe(merged_df, use_container_width=True)
+                
+                # NEW: Add Headcount & Country filter
+                headcount_options = merged_df['profile_headcountRange'].dropna().unique().tolist() if 'profile_headcountRange' in merged_df.columns else []
+                country_options = merged_df['profile_profileLocationCountry'].dropna().unique().tolist() if 'profileLocationCountry' in merged_df.columns else []
+
+                selected_headcount = st.multiselect("Filter by Headcount", options=headcount_options)
+                selected_country = st.multiselect("Filter by Country", options=country_options)
+
+                filtered_df = merged_df.copy()
+                if selected_headcount:
+                    filtered_df = filtered_df[filtered_df['profile_headcountRange'].isin(selected_headcount)]
+                if selected_country:
+                    filtered_df = filtered_df[filtered_df['profile_profileLocationCountry'].isin(selected_country)]
+
+                st.dataframe(filtered_df, use_container_width=True)
+
                 output_dir = "outputs"
                 os.makedirs(output_dir, exist_ok=True)
                 merged_data_path = os.path.join(output_dir, "batch_profiles_merged.xlsx")
                 with pd.ExcelWriter(merged_data_path, engine="openpyxl") as writer:
-                    merged_df.to_excel(writer, sheet_name="profiles", index=False)
+                    filtered_df.to_excel(writer, sheet_name="profiles", index=False)
+
                 with open(merged_data_path, "rb") as f:
                     st.download_button(
                         label="Download merged profiles as Excel",
@@ -773,22 +786,6 @@ class LinkedInExtractorApp:
                         file_name="batch_profiles_merged.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
-            else:
-                st.info("No profile data extracted. Only input data is available for download.")
-                st.dataframe(input_df, use_container_width=True)
-                output_dir = "outputs"
-                os.makedirs(output_dir, exist_ok=True)
-                input_data_path = os.path.join(output_dir, "batch_profiles_input_only.xlsx")
-                with pd.ExcelWriter(input_data_path, engine="openpyxl") as writer:
-                    input_df.to_excel(writer, sheet_name="input", index=False)
-                with open(input_data_path, "rb") as f:
-                    st.download_button(
-                        label="Download input data as Excel",
-                        data=f,
-                        file_name="batch_profiles_input_only.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                    )
-
     def run(self):
         """Run the Streamlit application"""
         self.setup_page()

@@ -69,12 +69,3 @@ if __name__ == "__main__":
         print ("Check this one is wanted")
         automation_details = get_automation_by_id('63f48ee97022e05c116fc798')
         print(automation_details)
-
-    # Example: Bulk run profile scraper
-    test_urls = [
-        "https://www.linkedin.com/in/johndoe",
-        "https://www.linkedin.com/in/janedoe"
-    ]
-    print("Running bulk profile scrape...")
-    bulk_result = run_profile_scraper_bulk(test_urls)
-    print(bulk_result)

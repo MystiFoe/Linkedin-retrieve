@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import io
 import os
+import sys
 from src.api.linkedin_api import LinkedInAPI
 from src.data.data_processor import DataProcessor
 from src.logger import app_logger
@@ -58,7 +59,8 @@ class LinkedInExtractorApp:
             ("Profile Extraction", "Extract data from a LinkedIn profile"),
             ("Company Extraction", "Extract data from a LinkedIn company page"),
             ("Decision-Maker Pipeline", "End-to-end workflow: search, extract, merge, filter, export"),
-            ("Profile Batch Extraction", "Upload an Excel file and extract profile data for all listed URLs") ,
+            ("Profile Batch Extraction", "Upload an Excel file and extract profile data for all listed URLs"),
+            ("Comment Generator", "Generate comments for post content from Excel file"),
         ]
         selected_page = st.session_state.get("selected_page", pages[0][0])
         for page, tooltip in pages:
@@ -786,6 +788,141 @@ class LinkedInExtractorApp:
                         file_name="batch_profiles_merged.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
+
+    def comment_generator_page(self):
+            """Display comment generator page for LinkedIn post content"""
+            st.markdown("<div class='card'>", unsafe_allow_html=True)
+            st.markdown("<div class='section-header'>💬 Generate Comments for LinkedIn Posts</div>", unsafe_allow_html=True)
+            st.caption("Upload an Excel file with post content, generate AI comments, and download the results.")
+
+            # File uploader for Excel file
+            uploaded_file = st.file_uploader("Upload Excel file with post content", type=["xlsx", "xls"])
+
+            if uploaded_file is not None:
+                try:
+                    # Load the Excel file
+                    df = pd.read_excel(uploaded_file)
+
+                    # Check if 'liPostContent' column exists
+                    if 'liPostContent' not in df.columns:
+                        st.error("The Excel file must contain a column named 'liPostContent'.")
+                    else:
+                        st.success(f"Successfully loaded Excel file with {len(df)} rows.")
+
+                        # Display the dataframe
+                        st.subheader("Preview of uploaded data")
+                        st.dataframe(df.head(5), use_container_width=True)
+
+                        # Button to generate comments
+                        if st.button("Generate Comments", help="Start generating comments for each post content"):
+                            with st.spinner("Loading AI model... This may take a minute for the first run"):
+                                try:
+                                    from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
+                                    from peft import PeftModel
+
+                                    # Local model paths
+                                    base_model_path = "models/phi-2"
+                                    peft_model_path = "models/comment-generator"
+
+                                    # Load tokenizer from base model
+                                    tokenizer = AutoTokenizer.from_pretrained(base_model_path)
+
+                                    # Load base model
+                                    base_model = AutoModelForCausalLM.from_pretrained(base_model_path)
+
+                                    # Load PEFT adapter on top of base model
+                                    model = PeftModel.from_pretrained(base_model, peft_model_path)
+
+                                    # Create text-generation pipeline
+                                    pipe = pipeline("text-generation", model=model, tokenizer=tokenizer)
+                                    model_name = "Comment Generator"
+
+                                    st.success(f"Model loaded successfully: {model_name}")
+
+                                    # Create a progress bar
+                                    progress_bar = st.progress(0)
+                                    status_text = st.empty()
+
+                                    # Create a new column for generated comments
+                                    df['generated_comment'] = ""
+
+                                    # Process each row
+                                    for i, row in enumerate(df.itertuples()):
+                                        if hasattr(row, 'liPostContent') and pd.notna(row.liPostContent) and str(row.liPostContent).strip():
+                                            # Update status
+                                            status_text.text(f"Generating comment for post {i+1} of {len(df)}...")
+
+                                            # Generate comment
+                                            post_content = str(row.liPostContent)
+                                            if len(post_content) > 500:
+                                                post_content = post_content[:500] + "..."
+
+                                            prompt = prompt = f"""
+You are Richard Skellett — Executive Chair of Bloor Research, Head of RADBOT, Creator of Digital Me, and a leading voice on the Future of Work, Human Capital, Digital Workers, and Systemic Transformation. 
+
+Your LinkedIn comment style is reflective, insightful, systemic — focused on the evolution of work, value of people, systemic design, and positive change. 
+
+**Guidelines:**
+- Write a *LinkedIn comment*, not a post.
+- Max 2-3 sentences.
+- Add thoughtful perspective or question — no generic praise or emojis.
+- If possible, relate to future of work, digital transformation, human capital, or systemic thinking.
+- Maintain Richard’s voice and tone.
+
+**Example comments:**
+- "This is exactly the type of thinking we need in an era where human capital must be valued as highly as financial capital."
+- "A great example of systemic innovation driving positive change. The future of work will undoubtedly rely on such shifts."
+- "It’s inspiring to see approaches that consider the whole system — not just technology in isolation."
+
+Now, reply to this LinkedIn post with a thoughtful comment:
+
+\"{post_content}\"
+
+Richard’s comment:"""
+
+
+                                            result = pipe(prompt, max_new_tokens=100, do_sample=True, temperature=0.7)
+
+                                            # Extract the generated text
+                                            generated_text = result[0]['generated_text']
+                                            if prompt in generated_text:
+                                                comment = generated_text[len(prompt):].strip()
+                                            else:
+                                                comment = generated_text
+
+                                            df.at[i, 'generated_comment'] = comment
+                                        else:
+                                            df.at[i, 'generated_comment'] = "No content to generate comment"
+
+                                        progress_bar.progress((i + 1) / len(df))
+
+                                    st.success("Successfully generated comments for all posts!")
+
+                                    # Display the results
+                                    st.subheader("Results with Generated Comments")
+                                    st.dataframe(df, use_container_width=True)
+
+                                    # Prepare Excel file for download
+                                    excel_buffer = io.BytesIO()
+                                    with pd.ExcelWriter(excel_buffer, engine="openpyxl") as writer:
+                                        df.to_excel(writer, sheet_name="posts_with_comments", index=False)
+                                    excel_buffer.seek(0)
+
+                                    st.download_button(
+                                        label="Download Excel with Generated Comments",
+                                        data=excel_buffer.getvalue(),
+                                        file_name="linkedin_posts_with_comments.xlsx",
+                                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                                    )
+
+                                except Exception as e:
+                                    st.error(f"An error occurred: {str(e)}")
+                                    app_logger.error(f"Error in comment generation: {str(e)}")
+                except Exception as e:
+                    st.error(f"Error reading the Excel file: {str(e)}")
+                    app_logger.error(f"Error reading Excel file: {str(e)}")
+
+            st.markdown("</div>", unsafe_allow_html=True)
     def run(self):
         """Run the Streamlit application"""
         self.setup_page()
@@ -802,6 +939,10 @@ class LinkedInExtractorApp:
             self.decision_maker_pipeline_page()
         elif selected_page == "Profile Batch Extraction":
             self.profile_batch_extraction_page()
+        elif selected_page == "Comment Generator":
+            self.comment_generator_page()
+
+
 
 if __name__ == "__main__":
     app = LinkedInExtractorApp()

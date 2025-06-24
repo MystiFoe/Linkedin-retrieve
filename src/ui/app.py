@@ -58,7 +58,8 @@ class LinkedInExtractorApp:
             ("Post Extraction", "Extract data from a specific LinkedIn post"),
             ("Profile Extraction", "Extract data from a LinkedIn profile"),
             ("Company Extraction", "Extract data from a LinkedIn company page"),
-            ("Decision-Maker Pipeline", "End-to-end workflow: search, extract, merge, filter, export"),
+            ("Profile Extraction (by Keyword)", "Extract LinkedIn profiles by keyword search"),
+            ("Post Extraction (By Keyword)", "End-to-end workflow: search, extract, merge, filter, export"),
             ("Profile Batch Extraction", "Upload an Excel file and extract profile data for all listed URLs"),
             ("Comment Generator", "Generate comments for post content from Excel file"),
         ]
@@ -617,20 +618,148 @@ class LinkedInExtractorApp:
                     st.warning("Please enter a valid LinkedIn company URL.")
             if company_url or st.session_state.get('company_extraction_result'):
                 st.markdown("</div>", unsafe_allow_html=True)
+    def profile_extraction_by_keyword_page(self):
+        "Pipeline: Profile Extraction by Keyword or LinkedIn Search URL → Filter by Headline → Export"
+        st.markdown("<div class='section-header'>Profile Extraction by Keyword / Search URL</div>", unsafe_allow_html=True)
+        st.caption("Enter a keyword or LinkedIn search URL to extract profiles, filter decision-makers by headline, and export the results.")
+
+        keyword_or_url = st.text_input("Enter keyword or LinkedIn People Search URL", key="profile_pipeline_keyword")
+        search_limit = st.number_input("Number of profiles to extract", min_value=1, max_value=1000, value=50, step=1, key="profile_pipeline_search_limit")
+        run_pipeline = st.button("Run Profile Extraction Pipeline", key="profile_pipeline_run")
+
+        if run_pipeline and keyword_or_url:
+            with st.spinner("Running profile extraction pipeline. This may take a minute..."):
+                # Step 1: Run Automation
+                automation_id = "63f5eaad7022e05c1180244a"  # LinkedIn People Search Export automation
+                connected_account_id = self._get_automation_and_account("keyword search")[1]
+                api_inputs = {
+                    "liPeopleSearchUrl": keyword_or_url,
+                    "maxCountPeopleSearch": int(search_limit)
+                }
+                result = self.linkedin_api.run_automation(
+                    name="Profile Extraction by Keyword",
+                    description="Pipeline: Extract LinkedIn profiles by keyword or search URL",
+                    automation_id=automation_id,
+                    connected_account_id=connected_account_id,
+                    timezone="Asia/Kolkata",
+                    inputs=api_inputs
+                )
+                data = result.get("data", {})
+                execution_id = data.get("id") or data.get("workflowId")
+
+                final_result = None
+                if execution_id:
+                    for _ in range(300):
+                        final_result = self.linkedin_api.get_execution_result(execution_id)
+                        if final_result.get("data"):
+                            break
+                        time.sleep(1)
+
+                if not (final_result and "data" in final_result):
+                    st.error("No profiles found for the given input.")
+                    return
+
+                profiles_df = pd.json_normalize(final_result["data"])
+                profiles_df = self.remove_empty_columns(profiles_df)
+
+                # Step 2: Filter Decision-Makers (based on 'headline' column from API)
+                keywords = [
+                    "founder", "cxo", "ceo", "coo", "cio", "cto", "chro", "cpo", "cro", "ciso", "clo", "cmo",
+                    "director", "vp", "head", "executive", "owner", "president","Chairman",
+                    "co-founder", "chief", "head of", "global", "regional", "principal", "Chief Executive Officer",
+                    "Chief Operating Officer", "Chief Information Officer", "Chief Technology Officer", "Chief Human Resources Officer",
+                    "Chief Product Officer", "Chief Revenue Officer", "Chief Information Security Officer",
+                    "Chief Legal Officer", "Chief Marketing Officer", "Vice President", "Director", "Chief Financial Officer",
+                    "Senior Vice President", "Executive Vice President", "Managing Director", "General Manager", " Chief Strategy Officer",
+                    "Chief Compliance Officer", "Chief Data Officer", "Chief Analytics Officer", "Chief Innovation Officer",
+                    "Chief Risk Officer", "Chief Diversity Officer", "Chief Sustainability Officer", "Chief Experience Officer",
+                    "Chief Customer Officer", "Chief Brand Officer", "Chief Communications Officer", "Chief Security Officer", "Chief Digital Officer", "Chief Growth Officer", "Chief Operating Officer",
+                    "Chief Administrative Officer", "Chief Investment Officer", "Chief Procurement Officer", "Chief Learning Officer", "Chief Knowledge Officer", "Chief Technology Architect", "Chief Information Architect"
+                ]
+
+                if "headline" in profiles_df.columns:
+                    profiles_df["headline"] = profiles_df["headline"].astype(str).str.lower()
+                    mask = profiles_df["headline"].apply(lambda x: any(k.lower() in x for k in keywords))
+                    filtered_df = profiles_df[mask]
+                else:
+                    st.warning("'headline' column not found. No filtering applied.")
+                    filtered_df = profiles_df
+
+                # Define important columns in order
+                important_columns = [
+                    "liPublicProfileUrl", "firstName", "lastName", "companyName", "jobTitle", "headline",
+                    "locationArea", "connectionDegree", "emailAddressPersonal", "liProfileUrl", "liProfileImageUrl", "liProfilePublicId",
+                    "snProfileUrl", "isPremium", "pastJobTitle", "hashtags", "serviceProvider"
+                ]
+
+                display_df = filtered_df[[col for col in important_columns if col in filtered_df.columns]]
+                st.success(f"Pipeline complete! Filtered {len(filtered_df)} high-level profiles.")
+                st.dataframe(display_df, use_container_width=True)
+
+                # Download filtered data
+                output_dir = "outputs"
+                os.makedirs(output_dir, exist_ok=True)
+                filtered_data_path = os.path.join(output_dir, "filtered_profiles.xlsx")
+                with pd.ExcelWriter(filtered_data_path, engine="openpyxl") as writer:
+                    filtered_df.to_excel(writer, sheet_name="filtered_profiles", index=False)
+
+                with open(filtered_data_path, "rb") as f:
+                    st.download_button(
+                        label="Download filtered profiles as Excel",
+                        data=f,
+                        file_name="filtered_profiles.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                    )
 
     def decision_maker_pipeline_page(self):
         """Simplified pipeline: Keyword Search → Filter by Headline → Export"""
-        st.markdown("<div class='section-header'>Decision-Maker Pipeline (Simple)</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-header'>Post Extraction (By Keyword)</div>", unsafe_allow_html=True)
         st.caption("Enter a keyword to search LinkedIn posts, filter for decision-makers by headline, and export the results.")
+
         keyword = st.text_input("Enter keyword(s) for LinkedIn post search", key="pipeline_keyword_auto")
-        search_limit = st.number_input("Number of posts to extract", min_value=1, max_value=100, value=10, step=1, key="pipeline_search_limit_auto")
+
+        with st.expander("Show Filters (optional)", expanded=False):
+            col1, col2 = st.columns(2)
+            with col1:
+                start_time = st.selectbox(
+                    "Event Start Time",
+                    ["", "PAST 24H", "PAST WEEK", "PAST MONTH"],
+                    format_func=lambda x: x if x else "-- None --"
+                )
+                sort_by = st.selectbox(
+                    "Sort By",
+                    ["", "DATE POSTED", "RELEVANCE"],
+                    format_func=lambda x: x if x else "-- None --"
+                )
+            with col2:
+                posted_by = st.selectbox(
+                    "Posted By",
+                    ["", "1st CONNECTION", "ME", "PEOPLE YOU FOLLOW"],
+                    format_func=lambda x: x if x else "-- None --"
+                )
+                search_limit = st.number_input(
+                    "Number of posts to extract (Max. 2500)",
+                    min_value=1, max_value=2500, value=10, step=1, key="pipeline_search_limit_auto"
+                )
+
         run_pipeline = st.button("Run Pipeline", key="pipeline_run_all")
+
         if run_pipeline and keyword:
             with st.spinner("Running pipeline. This may take a minute..."):
                 # Step 1: Keyword Search
                 automation_id = "64099c6e0936e46db5d76f4c"
                 connected_account_id = self._get_automation_and_account("keyword search")[1]
-                api_inputs = {"liPostSearchUrl": keyword, "maxCountPostSearch": int(search_limit)}
+                api_inputs = {"liPostSearchUrl": keyword}
+
+                if start_time:
+                    api_inputs["startTime"] = {"PAST 24H": "past-24h", "PAST WEEK": "past-week", "PAST MONTH": "past-month"}[start_time]
+                if sort_by:
+                    api_inputs["sortBy"] = {"DATE POSTED": "date_posted", "RELEVANCE": "relevance"}[sort_by]
+                if posted_by:
+                    api_inputs["postedBy"] = {"1st CONNECTION": "first", "ME": "me", "PEOPLE YOU FOLLOW": "following"}[posted_by]
+                if search_limit:
+                    api_inputs["maxCountPostSearch"] = int(search_limit)
+
                 result = self.linkedin_api.run_automation(
                     name="Pipeline Keyword Search",
                     description="Pipeline: Search LinkedIn posts by keywords",
@@ -641,6 +770,7 @@ class LinkedInExtractorApp:
                 )
                 data = result.get("data", {})
                 execution_id = data.get("id") or data.get("workflowId")
+
                 final_result = None
                 if execution_id:
                     for _ in range(120):
@@ -648,16 +778,29 @@ class LinkedInExtractorApp:
                         if final_result.get("data"):
                             break
                         time.sleep(1)
+
                 if not (final_result and "data" in final_result):
                     st.error("No posts found for the given keyword.")
                     return
+
                 posts_df = pd.json_normalize(final_result["data"])
                 posts_df = self.remove_empty_columns(posts_df)
 
                 # Step 2: Filter Decision-Makers (only using 'liProfileHeadline' column)
                 keywords = [
-                    "founder", "cxo", "ceo", "coo", "cio", "cto", "chro", "cpo", "cro", "CISO", "clo", "cmo", "director", "vp", "head", "decision", "leader", "Manager", "executive", "owner", "president", "Co-Founder", "Chief", "Head of", "Lead", "Global", "Regional", "Senior", "Principal"
+                   "founder", "cxo", "ceo", "coo", "cio", "cto", "chro", "cpo", "cro", "ciso", "clo", "cmo",
+                    "director", "vp", "head", "executive", "owner", "president","Chairman",
+                    "co-founder", "chief", "head of", "global", "regional", "principal", "Chief Executive Officer",
+                    "Chief Operating Officer", "Chief Information Officer", "Chief Technology Officer", "Chief Human Resources Officer",
+                    "Chief Product Officer", "Chief Revenue Officer", "Chief Information Security Officer",
+                    "Chief Legal Officer", "Chief Marketing Officer", "Vice President", "Director", "Chief Financial Officer",
+                    "Senior Vice President", "Executive Vice President", "Managing Director", "General Manager", " Chief Strategy Officer",
+                    "Chief Compliance Officer", "Chief Data Officer", "Chief Analytics Officer", "Chief Innovation Officer",
+                    "Chief Risk Officer", "Chief Diversity Officer", "Chief Sustainability Officer", "Chief Experience Officer",
+                    "Chief Customer Officer", "Chief Brand Officer", "Chief Communications Officer", "Chief Security Officer", "Chief Digital Officer", "Chief Growth Officer", "Chief Operating Officer",
+                    "Chief Administrative Officer", "Chief Investment Officer", "Chief Procurement Officer", "Chief Learning Officer", "Chief Knowledge Officer", "Chief Technology Architect", "Chief Information Architect"
                 ]
+
                 if "liProfileHeadline" in posts_df.columns:
                     posts_df["liProfileHeadline"] = posts_df["liProfileHeadline"].astype(str).str.lower()
                     mask = posts_df["liProfileHeadline"].apply(lambda x: any(k.lower() in x for k in keywords))
@@ -665,11 +808,14 @@ class LinkedInExtractorApp:
                 else:
                     st.warning("'liProfileHeadline' column not found. No filtering applied.")
                     filtered_df = posts_df
+
                 # Define important columns in the specified order
                 important_columns = [
-                    "liPublicProfileUrl", "firstName", "lastName", "companyName", "liCompanyPublicUrl", "headcountRange", "jobLocationArea", "jobTitle", "jobTenure",
-                    "profileDescription", "liProfileHeadline", "emailAddressPersonal", "profileLocationCountry", "profileLocationCity", "profileLocationArea", "locationCountryCode", "industry"
+                    "liPublicProfileUrl", "firstName", "lastName", "companyName", "liCompanyPublicUrl", "headcountRange",
+                    "jobLocationArea", "jobTitle", "jobTenure", "profileDescription", "liProfileHeadline", "emailAddressPersonal",
+                    "profileLocationCountry", "profileLocationCity", "profileLocationArea", "locationCountryCode", "industry"
                 ]
+
                 display_df = filtered_df[[col for col in important_columns if col in filtered_df.columns]]
                 st.success(f"Pipeline complete! Filtered {len(filtered_df)} high-level profiles.")
                 st.dataframe(display_df, use_container_width=True)
@@ -680,6 +826,7 @@ class LinkedInExtractorApp:
                 filtered_data_path = os.path.join(output_dir, "decision_makers.xlsx")
                 with pd.ExcelWriter(filtered_data_path, engine="openpyxl") as writer:
                     filtered_df.to_excel(writer, sheet_name="decision_makers", index=False)
+
                 with open(filtered_data_path, "rb") as f:
                     st.download_button(
                         label="Download filtered decision-makers as Excel",
@@ -689,9 +836,10 @@ class LinkedInExtractorApp:
                     )
 
     def profile_batch_extraction_page(self):
-        """Upload an Excel file, extract profile data for all liPublicProfileUrl, and merge results."""
+        """Upload an Excel file, extract profile data for all liPublicProfileUrl, filter headcount > 450, and export."""
         st.markdown("<div class='section-header'>Profile Batch Extraction</div>", unsafe_allow_html=True)
-        st.caption("Upload an Excel file (from Decision-Maker Pipeline), extract profile data for all listed URLs, and download the merged result.")
+        st.caption("Upload an Excel file, extract profiles, auto-filter for Headcount > 450, and download result.")
+
         uploaded_file = st.file_uploader("Upload Excel file with 'liPublicProfileUrl' column", type=["xlsx"])
         if uploaded_file:
             try:
@@ -699,21 +847,19 @@ class LinkedInExtractorApp:
             except Exception as e:
                 st.error(f"Failed to read Excel file: {e}")
                 return
-            # Accept 'liPublicProfileUrl', 'liPublicProfileURL', or 'Input Profile URL' (case-insensitive)
-            col_candidates = [col for col in input_df.columns if isinstance(col, str) and col.lower() in ["lipublicprofileurl", "input profile url"]]
-            if not col_candidates:
-                st.error("The uploaded file must contain a 'liPublicProfileUrl', 'liPublicProfileURL', or 'Input Profile URL' column.")
-                return
-            # Use exact column names for merging
+
             if "liPublicProfileURL" not in input_df.columns:
                 st.error("The uploaded file must contain a 'liPublicProfileURL' column.")
                 return
+
             url_col_input = "liPublicProfileURL"
             url_col_output = "Input Profile URL"
             profile_urls = input_df[url_col_input].dropna().unique().tolist()
+
             st.info(f"Found {len(profile_urls)} unique profile URLs. Starting extraction...")
             profile_data = []
             extraction_errors = []
+
             for idx, url in enumerate(profile_urls):
                 st.write(f"Extracting profile {idx+1}/{len(profile_urls)}: {url}")
                 try:
@@ -742,13 +888,13 @@ class LinkedInExtractorApp:
                         break
                 except Exception as e:
                     extraction_errors.append(f"Error for {url}: {e}")
-                    st.error(f"Profile extraction failed or limit reached for: {url}. Try again later. Error: {e}")
+                    st.error(f"Profile extraction failed for: {url}. Error: {e}")
                     break
 
             if profile_data:
                 profiles_df = self.expand_profiles_to_df(profile_data)
                 profiles_df = self.remove_empty_columns(profiles_df)
-                # Prefix all columns in profiles_df with 'profile_' except for the profile URL column
+
                 profiles_df = profiles_df.rename(columns={
                     col: (f"profile_{col}" if col.lower() != url_col_input.lower() else col)
                     for col in profiles_df.columns
@@ -758,36 +904,46 @@ class LinkedInExtractorApp:
                 merged_df = pd.concat([input_df.iloc[:n].reset_index(drop=True), profiles_df.iloc[:n].reset_index(drop=True)], axis=1)
                 merged_df = merged_df.loc[:, ~merged_df.columns.duplicated()]
 
-                st.success(f"Extracted and merged {len(merged_df)} profiles (order-wise, expanded columns, no duplicate columns).")
-                
-                # NEW: Add Headcount & Country filter
-                headcount_options = merged_df['profile_headcountRange'].dropna().unique().tolist() if 'profile_headcountRange' in merged_df.columns else []
-                country_options = merged_df['profile_profileLocationCountry'].dropna().unique().tolist() if 'profileLocationCountry' in merged_df.columns else []
+                st.success(f"Extracted and merged {len(merged_df)} profiles.")
 
-                selected_headcount = st.multiselect("Filter by Headcount", options=headcount_options)
-                selected_country = st.multiselect("Filter by Country", options=country_options)
+                # Auto filter: Headcount > 450
+                if 'profile_headcountRange' in merged_df.columns:
+                    def parse_headcount(x):
+                        try:
+                            parts = str(x).replace("+","").replace(",","").split("-")
+                            if len(parts) == 2:
+                                return int(parts[1].strip())
+                            elif parts[0].strip().isdigit():
+                                return int(parts[0].strip())
+                        except:
+                            return 0
+                        return 0
 
-                filtered_df = merged_df.copy()
-                if selected_headcount:
-                    filtered_df = filtered_df[filtered_df['profile_headcountRange'].isin(selected_headcount)]
-                if selected_country:
-                    filtered_df = filtered_df[filtered_df['profile_profileLocationCountry'].isin(selected_country)]
+                    merged_df['parsed_headcount'] = merged_df['profile_headcountRange'].apply(parse_headcount)
+                    filtered_df = merged_df[merged_df['parsed_headcount'] > 450].drop(columns=['parsed_headcount'])
+
+                    st.success(f"Filtered profiles with headcount > 450: {len(filtered_df)} profiles.")
+                else:
+                    st.warning("No 'profile_headcountRange' column found. Exporting full merged result.")
+                    filtered_df = merged_df
 
                 st.dataframe(filtered_df, use_container_width=True)
 
                 output_dir = "outputs"
                 os.makedirs(output_dir, exist_ok=True)
-                merged_data_path = os.path.join(output_dir, "batch_profiles_merged.xlsx")
+                merged_data_path = os.path.join(output_dir, "batch_profiles_filtered.xlsx")
+
                 with pd.ExcelWriter(merged_data_path, engine="openpyxl") as writer:
                     filtered_df.to_excel(writer, sheet_name="profiles", index=False)
 
                 with open(merged_data_path, "rb") as f:
                     st.download_button(
-                        label="Download merged profiles as Excel",
+                        label="Download filtered profiles as Excel",
                         data=f,
-                        file_name="batch_profiles_merged.xlsx",
+                        file_name="batch_profiles_filtered.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                     )
+
 
     def comment_generator_page(self):
             """Display comment generator page for LinkedIn post content"""
@@ -924,23 +1080,23 @@ Richard’s comment:"""
 
             st.markdown("</div>", unsafe_allow_html=True)
     def run(self):
-        """Run the Streamlit application"""
-        self.setup_page()
-        selected_page = self.display_navigation()
-        if selected_page == "Keyword Search":
-            self.keyword_search_page()
-        elif selected_page == "Post Extraction":
-            self.post_extraction_page()
-        elif selected_page == "Profile Extraction":
-            self.profile_extraction_page()
-        elif selected_page == "Company Extraction":
-            self.company_extraction_page()
-        elif selected_page == "Decision-Maker Pipeline":
-            self.decision_maker_pipeline_page()
-        elif selected_page == "Profile Batch Extraction":
-            self.profile_batch_extraction_page()
-        elif selected_page == "Comment Generator":
-            self.comment_generator_page()
+            """Run the Streamlit application"""
+            self.setup_page()
+            selected_page = self.display_navigation()
+            if selected_page == "Keyword Search":
+                self.keyword_search_page()
+            elif selected_page == "Post Extraction":
+                self.post_extraction_page()
+            elif selected_page == "Profile Extraction":
+                self.profile_extraction_page()
+            elif selected_page == "Profile Extraction (by Keyword)":
+                self.profile_extraction_by_keyword_page()
+            elif selected_page == "Post Extraction (By Keyword)":
+                self.decision_maker_pipeline_page()
+            elif selected_page == "Profile Batch Extraction":
+                self.profile_batch_extraction_page()
+            elif selected_page == "Comment Generator":
+                self.comment_generator_page()
 
 
 

@@ -67,5 +67,5 @@ if __name__ == "__main__":
     # Example: Get automation by ID (replace with a real automation ID as needed)
     if automations.get("data"):
         print ("Check this one is wanted")
-        automation_details = get_automation_by_id('63f5eaad7022e05c1180244a')
+        automation_details = get_automation_by_id('64709b0f90217363308b2aaa')
         print(automation_details)

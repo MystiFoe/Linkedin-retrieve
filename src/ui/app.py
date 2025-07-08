@@ -1695,24 +1695,204 @@ class LinkedInExtractorApp:
         """Display comment generator page for LinkedIn post content"""
         import requests
         import time
+        import io
+        import pandas as pd
         from src.config import Config
         
         st.markdown("<div class='section-header'>Generate Comments for LinkedIn Posts</div>", unsafe_allow_html=True)
-        st.caption("Upload Excel file with post content to generate AI-powered professional comments")
+        st.caption("Generate AI-powered professional comments for LinkedIn posts")
         
-        # File uploader for Excel file
+        # ADD: Input method selection
+        input_method = st.radio(
+            "Choose input method:",
+            options=["Single Text Input", "Excel File Upload"],
+            horizontal=True
+        )
+        
+        # ADD: Single text input section
+        if input_method == "Single Text Input":
+            st.subheader("Single Post Comment Generation")
+            post_content = st.text_area(
+                "Enter LinkedIn post content:",
+                placeholder="Paste your LinkedIn post content here...",
+                height=150
+            )
+            
+            if st.button("Generate Comment", help="Generate a comment for this post"):
+                if not post_content.strip():
+                    st.error("Please enter some post content.")
+                    return
+                    
+                with st.spinner("Generating comment..."):
+                    try:
+                        # Load configuration to get HF token
+                        config = Config.load_config()
+                        hf_token = config.get("HF_TOKEN")
+                        
+                        if not hf_token:
+                            try:
+                                hf_token = st.secrets["HF_TOKEN"]
+                            except:
+                                import os
+                                hf_token = os.getenv("HF_TOKEN")
+                        
+                        if not hf_token:
+                            st.error("HF_TOKEN not found in configuration.")
+                            return
+                        
+                        # Clean token
+                        clean_token = hf_token.replace("Bearer ", "") if hf_token.startswith("Bearer ") else hf_token
+                        
+                        # API Configuration
+                        API_URL = "https://iik6wo71sp9xhxjs.us-east-1.aws.endpoints.huggingface.cloud"
+                        headers = {
+                            "Accept": "application/json",
+                            "Authorization": f"Bearer {clean_token}",
+                            "Content-Type": "application/json"
+                        }
+                        
+                        # UPDATED: Auto-resume query function
+                        def query_with_auto_resume(payload, max_retries=10):
+                            for attempt in range(max_retries):
+                                try:
+                                    response = requests.post(API_URL, headers=headers, json=payload, timeout=180)
+                                    
+                                    if response.status_code == 200:
+                                        result = response.json()
+                                        if isinstance(result, list) and len(result) > 0:
+                                            if 'generated_text' in result[0] and result[0]['generated_text']:
+                                                return result
+                                        elif isinstance(result, dict) and result.get('generated_text'):
+                                            return result
+                                    
+                                    elif response.status_code == 503:
+                                        if attempt == 0:
+                                            st.info("🚀 Starting AI model... This may take 1-2 minutes.")
+                                        else:
+                                            st.info(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
+                                    
+                                    elif response.status_code == 429:
+                                        st.info("⏸️ Rate limited, waiting...")
+                                        time.sleep(5)
+                                    
+                                    else:
+                                        if attempt < max_retries - 1:
+                                            st.info(f"🔄 Connection issue, retrying...")
+                                        else:
+                                            return {"error": f"Status {response.status_code}: {response.text}"}
+                                    
+                                except requests.exceptions.Timeout:
+                                    if attempt < max_retries - 1:
+                                        st.info(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
+                                    else:
+                                        return {"error": "Model failed to respond after multiple attempts"}
+                                
+                                except Exception as e:
+                                    if attempt < max_retries - 1:
+                                        st.info(f"🔄 Connection error, retrying...")
+                                    else:
+                                        return {"error": f"Connection failed: {str(e)}"}
+                                
+                                delay = min(10 + (attempt * 5), 30)
+                                time.sleep(delay)
+                            
+                            return {"error": "Model failed to start after maximum retries"}
+                        
+                        # Truncate content if too long
+                        if len(post_content) > 500:
+                            post_content = post_content[:500] + "..."
+                        
+                        # Generate comment
+                        output = query_with_auto_resume({
+                            "inputs": post_content,
+                            "parameters": {
+                                "max_new_tokens": 100,
+                                "temperature": 0.7,
+                                "do_sample": True
+                            }
+                        })
+                        
+                        if "error" in output:
+                            st.error(f"Error generating comment: {output['error']}")
+                        else:
+                            try:
+                                # Handle response format properly
+                                if isinstance(output, list) and len(output) > 0:
+                                    comment = output[0].get('generated_text', 'No response')
+                                elif isinstance(output, dict):
+                                    comment = output.get('generated_text', 'No response')
+                                else:
+                                    comment = "Error: Invalid response format"
+                                
+                                st.success("✅ Comment generated successfully!")
+                                st.subheader("Generated Comment:")
+                                st.write(comment)
+                                st.code(comment, language=None)
+                                
+                            except Exception as e:
+                                st.error(f"Error parsing response: {str(e)}")
+                                
+                    except Exception as e:
+                        st.error(f"An error occurred: {str(e)}")
+                        app_logger.error(f"Error in single comment generation: {str(e)}")
+            return
+        
+        # Excel File Upload section (keep existing structure but add enhancements)
+        st.subheader("Bulk Comment Generation from Excel")
         uploaded_file = st.file_uploader("Upload Excel file with post content", type=["xlsx", "xls"])
         
         if uploaded_file is not None:
             try:
-                # Load the Excel file
-                df = pd.read_excel(uploaded_file)
+                # ADD: Multiple sheets support and flexible column detection
+                excel_file = pd.ExcelFile(uploaded_file)
+                sheet_names = excel_file.sheet_names
                 
-                # Check if 'liPostContent' column exists
-                if 'liPostContent' not in df.columns:
-                    st.error("The Excel file must contain a column named 'liPostContent'.")
+                st.info(f"📊 Found {len(sheet_names)} sheet(s): {', '.join(sheet_names)}")
+                
+                # ADD: Enhanced column detection
+                possible_columns = ['liPostContent', 'postContent', 'PostContent', 'post_content', 'Post_Content', 'content', 'Content']
+                content_column = None
+                selected_sheet = None
+                df = None
+                
+                # Search for content column across all sheets
+                for sheet_name in sheet_names:
+                    temp_df = pd.read_excel(uploaded_file, sheet_name=sheet_name)
+                    
+                    # First try exact match
+                    for col in possible_columns:
+                        if col in temp_df.columns:
+                            content_column = col
+                            selected_sheet = sheet_name
+                            df = temp_df
+                            break
+                    
+                    if content_column:
+                        break
+                    
+                    # If no exact match, try case-insensitive search
+                    temp_df_columns_lower = [col.lower() for col in temp_df.columns]
+                    for col in possible_columns:
+                        if col.lower() in temp_df_columns_lower:
+                            content_column = temp_df.columns[temp_df_columns_lower.index(col.lower())]
+                            selected_sheet = sheet_name
+                            df = temp_df
+                            break
+                    
+                    if content_column:
+                        break
+                
+                # UPDATED: Better error handling for column detection
+                if content_column is None:
+                    st.error(f"❌ No post content column found in any sheet!")
+                    st.info(f"🔍 Looking for columns: {', '.join(possible_columns)}")
+                    
+                    # Show columns available in each sheet
+                    for sheet_name in sheet_names:
+                        temp_df = pd.read_excel(uploaded_file, sheet_name=sheet_name)
+                        st.write(f"**Sheet '{sheet_name}' columns:** {', '.join(temp_df.columns.tolist())}")
                 else:
-                    st.success(f"Successfully loaded Excel file with {len(df)} rows.")
+                    st.success(f"✅ Found column '{content_column}' in sheet '{selected_sheet}' with {len(df)} rows!")
                     
                     # Display the dataframe
                     st.subheader("Preview of uploaded data")
@@ -1748,36 +1928,55 @@ class LinkedInExtractorApp:
                                     "Content-Type": "application/json"
                                 }
                                 
-                                def query(payload):
-                                    """Query function with proper error handling"""
-                                    try:
-                                        response = requests.post(API_URL, headers=headers, json=payload, timeout=120)
-                                        if response.status_code == 200:
-                                            return response.json()
-                                        else:
-                                            return {"error": f"Status {response.status_code}: {response.text}"}
-                                    except requests.exceptions.Timeout:
-                                        return {"error": "Timeout after 2 minutes"}
-                                    except Exception as e:
-                                        return {"error": str(e)}
+                                # UPDATED: Replace basic query with auto-resume version
+                                def query_with_auto_resume(payload, max_retries=10):
+                                    for attempt in range(max_retries):
+                                        try:
+                                            response = requests.post(API_URL, headers=headers, json=payload, timeout=180)
+                                            
+                                            if response.status_code == 200:
+                                                result = response.json()
+                                                if isinstance(result, list) and len(result) > 0:
+                                                    if 'generated_text' in result[0] and result[0]['generated_text']:
+                                                        return result
+                                                elif isinstance(result, dict) and result.get('generated_text'):
+                                                    return result
+                                            
+                                            elif response.status_code == 503:
+                                                if attempt == 0:
+                                                    st.info("🚀 Starting AI model... This may take 1-2 minutes.")
+                                                else:
+                                                    st.info(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
+                                            
+                                            elif response.status_code == 429:
+                                                st.info("⏸️ Rate limited, waiting...")
+                                                time.sleep(5)
+                                            
+                                            else:
+                                                if attempt < max_retries - 1:
+                                                    st.info(f"🔄 Connection issue, retrying...")
+                                                else:
+                                                    return {"error": f"Status {response.status_code}: {response.text}"}
+                                            
+                                        except requests.exceptions.Timeout:
+                                            if attempt < max_retries - 1:
+                                                st.info(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
+                                            else:
+                                                return {"error": "Model failed to respond after multiple attempts"}
+                                        
+                                        except Exception as e:
+                                            if attempt < max_retries - 1:
+                                                st.info(f"🔄 Connection error, retrying...")
+                                            else:
+                                                return {"error": f"Connection failed: {str(e)}"}
+                                        
+                                        delay = min(10 + (attempt * 5), 30)
+                                        time.sleep(delay)
+                                    
+                                    return {"error": "Model failed to start after maximum retries"}
                                 
-                                # Test connection
-                                st.info("Testing connection...")
-                                test_output = query({
-                                    "inputs": "This is a test post about technology innovation",
-                                    "parameters": {
-                                        "max_new_tokens": 100,
-                                        "temperature": 0.7,
-                                        "do_sample": True
-                                    }
-                                })
-                                
-                                if "error" in test_output:
-                                    st.error(f"❌ Connection failed: {test_output['error']}")
-                                    st.info("💡 The endpoint may be cold starting. This can take 1-2 minutes.")
-                                    return
-                                
-                                st.success("✅ Connected successfully!")
+                                # REMOVED: Test connection that causes early returns
+                                # Auto-resume will handle cold starts automatically
                                 
                                 # Create progress tracking
                                 progress_bar = st.progress(0)
@@ -1787,17 +1986,18 @@ class LinkedInExtractorApp:
                                 df['generated_comment'] = ""
                                 successful_generations = 0
                                 
-                                # Process each row with EXACT same parameters as local
+                                # UPDATED: Process each row using detected column name
                                 for i, row in enumerate(df.itertuples()):
-                                    if hasattr(row, 'liPostContent') and pd.notna(row.liPostContent) and str(row.liPostContent).strip():
+                                    # Use the detected content column instead of hardcoded 'liPostContent'
+                                    if hasattr(row, content_column) and pd.notna(getattr(row, content_column)) and str(getattr(row, content_column)).strip():
                                         status_text.text(f"Generating comment for post {i+1} of {len(df)}...")
                                         
-                                        post_content = str(row.liPostContent)
+                                        post_content = str(getattr(row, content_column))
                                         if len(post_content) > 500:
                                             post_content = post_content[:500] + "..."
                                         
-                                        # EXACT SAME PARAMETERS as local implementation
-                                        output = query({
+                                        # UPDATED: Use auto-resume query instead of basic query
+                                        output = query_with_auto_resume({
                                             "inputs": post_content,  # Handler will add the prompt
                                             "parameters": {
                                                 "max_new_tokens": 100,

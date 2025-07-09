@@ -1751,7 +1751,10 @@ class LinkedInExtractorApp:
                             "Content-Type": "application/json"
                         }
                         
-                        # UPDATED: Auto-resume query function
+                        # Create status text element for single status updates
+                        status_text = st.empty()
+                        
+                        # UPDATED: Auto-resume query function with single status updates
                         def query_with_auto_resume(payload, max_retries=10):
                             for attempt in range(max_retries):
                                 try:
@@ -1767,29 +1770,29 @@ class LinkedInExtractorApp:
                                     
                                     elif response.status_code == 503:
                                         if attempt == 0:
-                                            st.info("🚀 Starting AI model... This may take 1-2 minutes.")
+                                            status_text.text("🚀 Starting AI model... This may take 1-2 minutes.")
                                         else:
-                                            st.info(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
+                                            status_text.text(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
                                     
                                     elif response.status_code == 429:
-                                        st.info("⏸️ Rate limited, waiting...")
+                                        status_text.text("⏸️ Rate limited, waiting...")
                                         time.sleep(5)
                                     
                                     else:
                                         if attempt < max_retries - 1:
-                                            st.info(f"🔄 Connection issue, retrying...")
+                                            status_text.text(f"🔄 Connection issue, retrying...")
                                         else:
                                             return {"error": f"Status {response.status_code}: {response.text}"}
                                     
                                 except requests.exceptions.Timeout:
                                     if attempt < max_retries - 1:
-                                        st.info(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
+                                        status_text.text(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
                                     else:
                                         return {"error": "Model failed to respond after multiple attempts"}
                                 
                                 except Exception as e:
                                     if attempt < max_retries - 1:
-                                        st.info(f"🔄 Connection error, retrying...")
+                                        status_text.text(f"🔄 Connection error, retrying...")
                                     else:
                                         return {"error": f"Connection failed: {str(e)}"}
                                 
@@ -1811,6 +1814,9 @@ class LinkedInExtractorApp:
                                 "do_sample": True
                             }
                         })
+                        
+                        # Clear status after completion
+                        status_text.empty()
                         
                         if "error" in output:
                             st.error(f"Error generating comment: {output['error']}")
@@ -1928,7 +1934,11 @@ class LinkedInExtractorApp:
                                     "Content-Type": "application/json"
                                 }
                                 
-                                # UPDATED: Replace basic query with auto-resume version
+                                # Create progress tracking
+                                progress_bar = st.progress(0)
+                                status_text = st.empty()
+                                
+                                # UPDATED: Replace basic query with auto-resume version with single status updates
                                 def query_with_auto_resume(payload, max_retries=10):
                                     for attempt in range(max_retries):
                                         try:
@@ -1944,29 +1954,29 @@ class LinkedInExtractorApp:
                                             
                                             elif response.status_code == 503:
                                                 if attempt == 0:
-                                                    st.info("🚀 Starting AI model... This may take 1-2 minutes.")
+                                                    status_text.text("🚀 Starting AI model... This may take 1-2 minutes.")
                                                 else:
-                                                    st.info(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
+                                                    status_text.text(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
                                             
                                             elif response.status_code == 429:
-                                                st.info("⏸️ Rate limited, waiting...")
+                                                status_text.text("⏸️ Rate limited, waiting...")
                                                 time.sleep(5)
                                             
                                             else:
                                                 if attempt < max_retries - 1:
-                                                    st.info(f"🔄 Connection issue, retrying...")
+                                                    status_text.text(f"🔄 Connection issue, retrying...")
                                                 else:
                                                     return {"error": f"Status {response.status_code}: {response.text}"}
                                             
                                         except requests.exceptions.Timeout:
                                             if attempt < max_retries - 1:
-                                                st.info(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
+                                                status_text.text(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
                                             else:
                                                 return {"error": "Model failed to respond after multiple attempts"}
                                         
                                         except Exception as e:
                                             if attempt < max_retries - 1:
-                                                st.info(f"🔄 Connection error, retrying...")
+                                                status_text.text(f"🔄 Connection error, retrying...")
                                             else:
                                                 return {"error": f"Connection failed: {str(e)}"}
                                         
@@ -1977,10 +1987,6 @@ class LinkedInExtractorApp:
                                 
                                 # REMOVED: Test connection that causes early returns
                                 # Auto-resume will handle cold starts automatically
-                                
-                                # Create progress tracking
-                                progress_bar = st.progress(0)
-                                status_text = st.empty()
                                 
                                 # Add comment column
                                 df['generated_comment'] = ""
@@ -2032,6 +2038,9 @@ class LinkedInExtractorApp:
                                         df.at[i, 'generated_comment'] = "No content to generate comment"
                                     
                                     progress_bar.progress((i + 1) / len(df))
+                                
+                                # Clear status after completion
+                                status_text.empty()
                                 
                                 # Show results
                                 st.success(f"🎉 Generated {successful_generations}/{len(df)} comments!")

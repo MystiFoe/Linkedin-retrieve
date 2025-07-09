@@ -1,0 +1,846 @@
+2025-07-09 12:19:13 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:19:13 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:19:13 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:19:13 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:19:13 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:19:15 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:19:15 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:19:15 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:19:15 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:19:15 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:19:15 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:19:15 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:19:15 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:19:15 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:19:15 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:19:18 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:19:18 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:19:18 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:19:18 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:19:18 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:29:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:29:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:29:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:29:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:29:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:29:26 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:29:26 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:29:26 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:29:26 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:29:26 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:29:31 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:29:31 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:29:31 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:29:31 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:29:31 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:29:33 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:29:33 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:29:33 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:29:33 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:29:33 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:29:33 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:29:33 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:34:52 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:34:52 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:34:52 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:34:52 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:34:52 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:34:58 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:34:58 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:34:58 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:34:58 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:34:58 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:35:45 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:35:45 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:35:45 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:35:45 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:35:45 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:35:45 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:35:45 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:35:45 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:35:45 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:35:45 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:35:45 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:35:45 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:46:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:46:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:46:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:46:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:46:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:46:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:46:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:50:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:50:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:50:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:50:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:50:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:50:19 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:50:19 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:50:19 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:50:19 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:50:19 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:50:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:50:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:50:21 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:50:21 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:50:21 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:50:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:50:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:52:56 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:52:56 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:52:56 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:52:56 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:52:56 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:59:30 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:59:30 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:59:30 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:59:30 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:59:30 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:59:34 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:59:34 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 12:59:34 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 12:59:34 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 12:59:34 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 12:59:34 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 12:59:34 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 13:03:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 13:03:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 13:03:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 13:03:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 13:03:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 13:40:40 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 13:40:40 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 13:40:40 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 13:40:40 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 13:40:40 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 13:40:41 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 13:40:41 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 13:49:49 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 13:49:49 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 13:49:49 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 13:49:49 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 13:49:49 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:12:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:12:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:12:21 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 14:12:21 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 14:12:21 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:12:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:12:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:16:22 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:16:22 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:16:22 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 14:16:22 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 14:16:22 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:28:30 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:28:30 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:28:30 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 14:28:30 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 14:28:30 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:28:30 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:28:30 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:31:59 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:31:59 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:31:59 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 14:31:59 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 14:31:59 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:47:20 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:47:20 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 14:47:20 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 14:47:20 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 14:47:20 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 14:47:20 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 14:47:20 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:23:16 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:23:16 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:23:16 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:23:16 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:23:16 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:23:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:23:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:23:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:23:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:23:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:23:28 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:23:28 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:23:28 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:23:28 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:23:28 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:23:28 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:23:28 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:23:28 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:23:28 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:23:28 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:26:06 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:26:06 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:26:06 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:26:06 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:26:06 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:26:13 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:26:13 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:26:13 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:26:13 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:26:13 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:26:15 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:26:15 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:26:15 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:26:15 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:26:15 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:26:15 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:26:15 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:29:45 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:29:45 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:29:45 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:29:45 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:29:45 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:38:40 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:38:40 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:38:40 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:38:40 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:38:40 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:38:40 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:38:40 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:43:51 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:43:51 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:43:51 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:43:51 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:43:51 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:18 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:18 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:18 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:18 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:18 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:21 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:21 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:21 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:21 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:21 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:21 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:22 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:22 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:22 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:22 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:22 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:29 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:29 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:29 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:29 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:29 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:31 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:31 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:48:31 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:48:31 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:48:31 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:48:31 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:48:31 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:52:00 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:52:00 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:52:00 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:52:00 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:52:00 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:06 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:06 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:06 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:06 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:06 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:06 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:06 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:06 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:06 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:06 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:54:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:54:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:54:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:54:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:54:25 | INFO     | src.ui.app:company_extraction_page:1056 - Extracting data for company: https://www.linkedin.com/company/allied-worldwide/
+2025-07-09 15:54:25 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/automations?platformId=622f03eb770f6bba0b8facaa
+2025-07-09 15:54:29 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Company Extraction",
+  "description": "Extract LinkedIn company data",
+  "automationId": "63f742037022e05c11a9440e",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liCompanyUrl": "https://www.linkedin.com/company/allied-worldwide/"
+  }
+}
+2025-07-09 15:54:29 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 15:54:30 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:33 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:39 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:42 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:46 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:50 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:55 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:54:57 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:00 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:02 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:05 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:07 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:10 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:12 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:14 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:17 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:19 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:24 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:27 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:31 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:33 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:38 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:43 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:46 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:55 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:55:58 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:01 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:05 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:08 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:11 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:13 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:16 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:20 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:31 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:38 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:45 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:47 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:53 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:56 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:56:58 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:04 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:06 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:09 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:12 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:16 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:18 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:21 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:24 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:27 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:29 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:34 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:39 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:45 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:48 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:54 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:57:56 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:00 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:05 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:08 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:10 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:14 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:18 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:23 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:26 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:29 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:31 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:35 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:39 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:42 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:44 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:48 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:55 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:58:59 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:01 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:04 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:06 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:09 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:12 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:15 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:20 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:25 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:32 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:34 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:37 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:46 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:54 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 15:59:56 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:59:56 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:59:56 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:59:56 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:59:56 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:59:56 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 15:59:56 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 15:59:56 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 15:59:56 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 15:59:56 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 15:59:57 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:02 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:04 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:08 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:11 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:13 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:16 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:19 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:22 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:25 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:32 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:35 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:38 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:40 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:43 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:45 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:48 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:50 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:53 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:00:56 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e435e3c67d0f8e9f0a1a8
+2025-07-09 16:04:48 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:04:48 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:04:48 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:04:48 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:04:48 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:04:48 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:04:48 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:04:48 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:04:48 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:04:48 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:04:52 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:04:52 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:04:52 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:04:52 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:04:52 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:04:53 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:04:53 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:04:53 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:04:53 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:04:53 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:05:04 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:05:04 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:05:04 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:05:04 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:05:04 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:05:13 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:05:13 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:05:13 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:05:13 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:05:13 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:06:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:06:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:06:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:06:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:06:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:06:26 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:06:26 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:06:26 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:06:26 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:06:26 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:06:28 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:06:28 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:06:28 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:06:28 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:06:28 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:06:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/automations?platformId=622f03eb770f6bba0b8facaa
+2025-07-09 16:06:30 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Pipeline Keyword Search",
+  "description": "Pipeline: Search LinkedIn posts by keywords",
+  "automationId": "64099c6e0936e46db5d76f4c",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liPostSearchUrl": "gcc",
+    "startTime": "past-week",
+    "sortBy": "date_posted",
+    "maxCountPostSearch": 10
+  }
+}
+2025-07-09 16:06:30 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:06:32 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46303c67d0f8e9f21eae
+2025-07-09 16:06:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46303c67d0f8e9f21eae
+2025-07-09 16:06:39 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46303c67d0f8e9f21eae
+2025-07-09 16:06:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46303c67d0f8e9f21eae
+2025-07-09 16:06:44 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46303c67d0f8e9f21eae
+2025-07-09 16:07:04 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:04 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:04 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:04 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:04 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:07:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:07:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:07:11 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:11 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:11 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:11 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:11 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:07:11 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:11 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:11 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:11 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:11 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:07:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:07:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:07:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:07:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:07:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:08:20 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:08:20 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:08:20 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:08:20 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:08:20 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:08:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:08:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:08:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:08:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:08:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:08:25 | INFO     | src.ui.app:profile_extraction_page:895 - Extracting data for profile: https://www.linkedin.com/in/ravichandran-n-r?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFUVSykB0CTXQvigVotVHKHI80BYRLus29c
+2025-07-09 16:08:25 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Profile Extraction",
+  "description": "Extract LinkedIn profile data",
+  "automationId": "63f48ee97022e05c116fc798",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liProfileUrl": "https://www.linkedin.com/in/ravichandran-n-r?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFUVSykB0CTXQvigVotVHKHI80BYRLus29c"
+  }
+}
+2025-07-09 16:08:25 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:08:26 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:29 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:32 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:35 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:37 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:40 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:43 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:45 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:49 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:56 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:08:59 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:02 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:05 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:08 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:11 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:14 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46a23c67d0f8e9f24f7b
+2025-07-09 16:09:16 | INFO     | src.data.data_processor:convert_to_dataframe:21 - Converting profile data to DataFrame
+2025-07-09 16:09:16 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Profile Posts Export",
+  "description": "Export LinkedIn profile posts",
+  "automationId": "649425e10f7b435e858547c2",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liProfileUrl": "https://www.linkedin.com/in/ravichandran-n-r?miniProfileUrn=urn%3Ali%3Afsd_profile%3AACoAAFUVSykB0CTXQvigVotVHKHI80BYRLus29c",
+    "maxCount": 5
+  }
+}
+2025-07-09 16:09:16 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:09:18 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:23 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:26 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:31 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:34 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:37 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:43 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:46 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e46d63c67d0f8e9f264f4
+2025-07-09 16:09:57 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:09:57 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:09:57 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:09:57 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:09:57 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:00 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:00 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:10:00 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:10:00 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:10:00 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:00 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:00 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:10:00 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:10:00 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:10:00 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:04 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:04 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:10:04 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:10:04 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:10:04 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:10:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:10:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:10:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:17 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:17 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:10:17 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:10:17 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:10:17 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:10:17 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:10:17 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:16:08 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:16:08 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:16:08 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:16:08 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:16:08 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:04 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:04 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:04 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:04 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:04 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:05 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:05 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:05 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:05 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:05 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:37 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:37 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:37 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:37 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:37 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:37 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:37 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:37 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:37 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:37 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:39 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:39 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:39 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:39 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:39 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:39 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:39 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:39 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:39 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:39 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:41 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:19:41 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:19:41 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:19:41 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:19:41 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:19:41 | INFO     | src.ui.app:profile_extraction_page:895 - Extracting data for profile: https://www.linkedin.com/in/vineetvikram46/
+2025-07-09 16:19:41 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Profile Extraction",
+  "description": "Extract LinkedIn profile data",
+  "automationId": "63f48ee97022e05c116fc798",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liProfileUrl": "https://www.linkedin.com/in/vineetvikram46/"
+  }
+}
+2025-07-09 16:19:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:19:43 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:19:46 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:19:49 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:19:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:19:55 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:19:57 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:00 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:03 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:06 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:09 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:11 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:14 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:16 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:19 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:22 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:25 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:28 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:31 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e49473c67d0f8e9f33729
+2025-07-09 16:20:33 | INFO     | src.data.data_processor:convert_to_dataframe:21 - Converting profile data to DataFrame
+2025-07-09 16:20:33 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Profile Posts Export",
+  "description": "Export LinkedIn profile posts",
+  "automationId": "649425e10f7b435e858547c2",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liProfileUrl": "https://www.linkedin.com/in/vineetvikram46/",
+    "maxCount": 5
+  }
+}
+2025-07-09 16:20:33 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:20:35 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:38 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:44 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:47 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:50 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:52 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:55 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:20:59 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:21:03 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:21:06 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e497b3c67d0f8e9f344e3
+2025-07-09 16:23:45 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:45 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:45 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:45 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:45 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:47 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:47 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:47 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:47 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:47 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:47 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:47 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:47 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:47 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:47 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:49 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:49 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:49 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:49 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:49 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:56 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:56 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:56 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:56 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:56 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:58 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:58 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:23:58 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:23:58 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:23:58 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:23:59 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:23:59 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:26:46 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:26:46 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:26:46 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:26:46 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:26:46 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:46 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:46 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:46 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:46 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:46 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:46 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:46 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:46 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:46 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:46 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:52 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:52 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:52 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:52 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:52 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:53 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:53 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:53 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:53 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:53 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:54 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:54 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:54 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:54 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:54 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:55 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:55 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:55 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:55 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:55 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:58 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:58 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:58 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:58 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:58 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:36:58 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:36:58 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:36:58 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:36:58 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:36:58 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:00 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:00 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:00 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:00 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:00 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:00 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:00 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:00 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:00 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:00 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:02 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:02 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:02 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:02 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:02 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:02 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:02 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:02 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:02 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:02 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:21 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:21 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:21 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:21 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:21 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:37:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:37:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:37:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:37:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:37:24 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/automations?platformId=622f03eb770f6bba0b8facaa
+2025-07-09 16:37:26 | DEBUG    | src.api.linkedin_api:run_automation:34 - Payload sent to TexAU /run: {
+  "name": "Profile Extraction by Keyword",
+  "description": "Pipeline: Extract LinkedIn profiles by keyword or search URL",
+  "automationId": "63f5eaad7022e05c1180244a",
+  "connectedAccountId": "68340dc4e7bb1f6b5af36e98",
+  "timezone": "Asia/Kolkata",
+  "inputs": {
+    "liPeopleSearchUrl": "GCC",
+    "maxCountPeopleSearch": 10
+  }
+}
+2025-07-09 16:37:26 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/run
+2025-07-09 16:37:27 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:37:30 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:37:33 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:37:36 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:37:39 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:37:41 | DEBUG    | src.api.texau_client:_make_request:51 - Making API request to endpoint: public/results/686e4d6f3c67d0f8e9f4740d
+2025-07-09 16:42:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:42:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:42:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:42:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:42:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:42:25 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:42:25 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:42:25 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:42:25 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:42:25 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-09 16:52:40 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-09 16:52:40 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-09 16:52:40 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-09 16:52:40 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-09 16:52:40 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App

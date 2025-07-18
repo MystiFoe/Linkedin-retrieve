@@ -1698,6 +1698,7 @@ class LinkedInExtractorApp:
         import io
         import pandas as pd
         from src.config import Config
+        from together import Together
         
         st.markdown("<div class='section-header'>Generate Comments for LinkedIn Posts</div>", unsafe_allow_html=True)
         st.caption("Generate AI-powered professional comments for LinkedIn posts")
@@ -1725,119 +1726,90 @@ class LinkedInExtractorApp:
                     
                 with st.spinner("Generating comment..."):
                     try:
-                        # Load configuration to get HF token
-                        config = Config.load_config()
-                        hf_token = config.get("HF_TOKEN")
-                        
-                        if not hf_token:
+                        # Initialize Together client with API key from secrets
+                        try:
+                            together_api_key = st.secrets["TOGETHER_API_KEY"]
+                        except:
                             try:
-                                hf_token = st.secrets["HF_TOKEN"]
+                                config = Config.load_config()
+                                together_api_key = config.get("TOGETHER_API_KEY")
                             except:
                                 import os
-                                hf_token = os.getenv("HF_TOKEN")
+                                together_api_key = os.getenv("TOGETHER_API_KEY")
                         
-                        if not hf_token:
-                            st.error("HF_TOKEN not found in configuration.")
+                        if not together_api_key:
+                            st.error("TOGETHER_API_KEY not found in configuration.")
                             return
                         
-                        # Clean token
-                        clean_token = hf_token.replace("Bearer ", "") if hf_token.startswith("Bearer ") else hf_token
-                        
-                        # API Configuration
-                        API_URL = "https://iik6wo71sp9xhxjs.us-east-1.aws.endpoints.huggingface.cloud"
-                        headers = {
-                            "Accept": "application/json",
-                            "Authorization": f"Bearer {clean_token}",
-                            "Content-Type": "application/json"
-                        }
+                        client = Together(api_key=together_api_key)
                         
                         # Create status text element for single status updates
                         status_text = st.empty()
-                        
-                        # UPDATED: Auto-resume query function with single status updates
-                        def query_with_auto_resume(payload, max_retries=10):
-                            for attempt in range(max_retries):
-                                try:
-                                    response = requests.post(API_URL, headers=headers, json=payload, timeout=180)
-                                    
-                                    if response.status_code == 200:
-                                        result = response.json()
-                                        if isinstance(result, list) and len(result) > 0:
-                                            if 'generated_text' in result[0] and result[0]['generated_text']:
-                                                return result
-                                        elif isinstance(result, dict) and result.get('generated_text'):
-                                            return result
-                                    
-                                    elif response.status_code == 503:
-                                        if attempt == 0:
-                                            status_text.text("🚀 Starting AI model... This may take 1-2 minutes.")
-                                        else:
-                                            status_text.text(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
-                                    
-                                    elif response.status_code == 429:
-                                        status_text.text("⏸️ Rate limited, waiting...")
-                                        time.sleep(5)
-                                    
-                                    else:
-                                        if attempt < max_retries - 1:
-                                            status_text.text(f"🔄 Connection issue, retrying...")
-                                        else:
-                                            return {"error": f"Status {response.status_code}: {response.text}"}
-                                    
-                                except requests.exceptions.Timeout:
-                                    if attempt < max_retries - 1:
-                                        status_text.text(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
-                                    else:
-                                        return {"error": "Model failed to respond after multiple attempts"}
-                                
-                                except Exception as e:
-                                    if attempt < max_retries - 1:
-                                        status_text.text(f"🔄 Connection error, retrying...")
-                                    else:
-                                        return {"error": f"Connection failed: {str(e)}"}
-                                
-                                delay = min(10 + (attempt * 5), 30)
-                                time.sleep(delay)
-                            
-                            return {"error": "Model failed to start after maximum retries"}
+                        status_text.text("Generating comment...")
                         
                         # Truncate content if too long
                         if len(post_content) > 500:
                             post_content = post_content[:500] + "..."
                         
-                        # Generate comment
-                        output = query_with_auto_resume({
-                            "inputs": post_content,
-                            "parameters": {
-                                "max_new_tokens": 100,
-                                "temperature": 0.7,
-                                "do_sample": True
-                            }
-                        })
+                        # Create the prompt
+                        prompt = f"""You are a business leader who runs multiple companies including Bloor Research International, Allied Worldwide, and Digital Anthropology. You focus on AI+human fusion, outcome-based work models, and keeping humans central to technology advancement.
+
+    Comment Examples - Notice the VARIED openings:
+
+    "A much needed initiative! And I think Cheney Hamilton and Richard Skellett can offer a lot more interesting facts and figures around this. The HR shift is one particular domain that has been neglected by far until now. Its high time organizations and individuals start taking this more seriously to excel on the future of work!"
+
+    "Super move. I believe this is actually how the future of work should or will look like down the line. Organizations have no chance if they ignore AI, but then again, neglecting the current human workforce on the pretext of integrating AI is also not ethical. What we truly need is what Moderna is doing - the fusion of AI and human workers or what we at Bloor Research International like to call #fusionwork."
+
+    "Absolutely agree with this grounded perspective. The real AI transformation isn't about flashy deployments or headcount cuts. It's about culture, clarity, and commitment to long-term value. At Bloor Research International, our research consistently points to the same truth: the most successful AI transformations are human-focused. Tools evolve fast, but it's people - leaders, teams, and the broader workforce, who determine whether change actually sticks. Resistance, skill gaps, and misaligned goals don't vanish with new tech; they require intentional, human-centric strategies to overcome. It's this kind of realism the AI conversation needs more of."
+
+    "And that's the reason we at Bloor Research International are focused on helping companies adapt to an dynamic pricing model or variable pay model which are linked to outcomes. For too long, traditional output-based models have locked companies into paying fixed costs for fixed hours, regardless of whether those hours actually translate into meaningful business value. When compensation is tied to presence over performance, it encourages activity, not accountability. To truly evolve, especially in the context of India's growing GCC maturity, we need to shift from fixed-cost thinking to outcome-based models. Dynamic pricing, aligned with actual business outcomes, not just time spent, is the future. It incentivizes innovation, fosters ownership, and creates a culture where value - not volume is rewarded. This isn't about cutting costs. It's about realigning them to what truly matters. And that's how we turn potential into performance."
+
+    "Totally agreed! The #futureofwork is build around #fusionwork (AI+human fusion), not AI-only work."
+
+    "Brilliantly said. The narrative that entry-level roles are "vanishing" is not only misleading, it's dangerous. Tech has always evolved, but evolution doesn't mean elimination. It means adaptation. We can't expect a workforce of experienced professionals tomorrow if we pull the ladder up today. Entry-level roles are where curiosity, creativity, and future leadership begin. So, instead of declaring their end, these decision makers in fact should be talking more about how to empower these budding professionals in an AI-first world. Rather than bringing in the confusion, how about they talk more about the FUSION. A fusion of human workers with their digital counterparts."
+
+    "Amazing times ahead for sure. I believe the right mix of AI and human intelligence could help reap multiple benefits in not just science but also other domains. The health sciences industry I think will be one of the most prominent ones to build on this development opening new frontiers in medicine, healthcare and more."
+
+    "Well, I believe this is a much-needed reality check for GCC leaders Sunil. The data-backed shift in roles as mentioned clearly signals that we can't afford to hold onto legacy structures in a world moving this fast. The future of GCCs won't just be defined by what roles remain, but how work is redesigned. What's needed now is a bold shift toward innovative frameworks that enable human + AI fusion. GCC must understand the importance of moving from rigid hierarchies to fluid, outcome-driven structures, powered by this fusion. It's not about replacing people with AI, but redesigning roles to unlock new value from both. And one thing for sure, there are exciting times ahead for those willing to adapt with intention."
+
+    CRITICAL RULES:
+    - Use VARIED, NATURAL openings like the examples above
+    - React directly to the specific post content with genuine enthusiasm or agreement
+    - Be conversational and supportive, not formal or analytical
+    - 3-6 complete sentences
+    - Sometimes mention "Bloor Research International", "#fusionwork", "Allied Worldwide"  
+    - Connect to AI+human fusion, business transformation themes when relevant
+    - End with complete sentences
+
+    Read this post and respond relavantly to the post with a VARIED, NATURAL opening that shows you actually read it: "{post_content}"
+
+    Comment:"""
+                        
+                        # Generate comment using Together API
+                        response = client.chat.completions.create(
+                            model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+                            messages=[
+                                {
+                                    "role": "user",
+                                    "content": prompt
+                                }
+                            ],
+                            max_tokens=250,
+                            temperature=0.7,
+                            stream=False
+                        )
+                        
+                        # Extract the generated comment
+                        comment = response.choices[0].message.content.strip()
                         
                         # Clear status after completion
                         status_text.empty()
                         
-                        if "error" in output:
-                            st.error(f"Error generating comment: {output['error']}")
-                        else:
-                            try:
-                                # Handle response format properly
-                                if isinstance(output, list) and len(output) > 0:
-                                    comment = output[0].get('generated_text', 'No response')
-                                elif isinstance(output, dict):
-                                    comment = output.get('generated_text', 'No response')
-                                else:
-                                    comment = "Error: Invalid response format"
-                                
-                                st.success("✅ Comment generated successfully!")
-                                st.subheader("Generated Comment:")
-                                st.write(comment)
-                                st.code(comment, language=None)
-                                
-                            except Exception as e:
-                                st.error(f"Error parsing response: {str(e)}")
-                                
+                        st.success("✅ Comment generated successfully!")
+                        st.subheader("Generated Comment:")
+                        st.write(comment)
+                        st.code(comment, language=None)
+                        
                     except Exception as e:
                         st.error(f"An error occurred: {str(e)}")
                         app_logger.error(f"Error in single comment generation: {str(e)}")
@@ -1906,87 +1878,28 @@ class LinkedInExtractorApp:
                     
                     # Button to generate comments
                     if st.button("Generate Comments", help="Start generating comments for each post content"):
-                        with st.spinner("Initializing AI model connection..."):
+                        with st.spinner("Generating comments..."):
                             try:
-                                # Load configuration to get HF token
-                                config = Config.load_config()
-                                hf_token = config.get("HF_TOKEN")
-                                
-                                if not hf_token:
+                                # Initialize Together client with API key from secrets
+                                try:
+                                    together_api_key = st.secrets["TOGETHER_API_KEY"]
+                                except:
                                     try:
-                                        hf_token = st.secrets["HF_TOKEN"]
+                                        config = Config.load_config()
+                                        together_api_key = config.get("TOGETHER_API_KEY")
                                     except:
                                         import os
-                                        hf_token = os.getenv("HF_TOKEN")
+                                        together_api_key = os.getenv("TOGETHER_API_KEY")
                                 
-                                if not hf_token:
-                                    st.error("HF_TOKEN not found in configuration.")
+                                if not together_api_key:
+                                    st.error("TOGETHER_API_KEY not found in configuration.")
                                     return
                                 
-                                # Clean token
-                                clean_token = hf_token.replace("Bearer ", "") if hf_token.startswith("Bearer ") else hf_token
-                                
-                                # API Configuration
-                                API_URL = "https://iik6wo71sp9xhxjs.us-east-1.aws.endpoints.huggingface.cloud"
-                                headers = {
-                                    "Accept": "application/json",
-                                    "Authorization": f"Bearer {clean_token}",
-                                    "Content-Type": "application/json"
-                                }
+                                client = Together(api_key=together_api_key)
                                 
                                 # Create progress tracking
                                 progress_bar = st.progress(0)
                                 status_text = st.empty()
-                                
-                                # UPDATED: Replace basic query with auto-resume version with single status updates
-                                def query_with_auto_resume(payload, max_retries=10):
-                                    for attempt in range(max_retries):
-                                        try:
-                                            response = requests.post(API_URL, headers=headers, json=payload, timeout=180)
-                                            
-                                            if response.status_code == 200:
-                                                result = response.json()
-                                                if isinstance(result, list) and len(result) > 0:
-                                                    if 'generated_text' in result[0] and result[0]['generated_text']:
-                                                        return result
-                                                elif isinstance(result, dict) and result.get('generated_text'):
-                                                    return result
-                                            
-                                            elif response.status_code == 503:
-                                                if attempt == 0:
-                                                    status_text.text("🚀 Starting AI model... This may take 1-2 minutes.")
-                                                else:
-                                                    status_text.text(f"⏳ Model starting... (attempt {attempt + 1}/{max_retries})")
-                                            
-                                            elif response.status_code == 429:
-                                                status_text.text("⏸️ Rate limited, waiting...")
-                                                time.sleep(5)
-                                            
-                                            else:
-                                                if attempt < max_retries - 1:
-                                                    status_text.text(f"🔄 Connection issue, retrying...")
-                                                else:
-                                                    return {"error": f"Status {response.status_code}: {response.text}"}
-                                            
-                                        except requests.exceptions.Timeout:
-                                            if attempt < max_retries - 1:
-                                                status_text.text(f"⏳ Request timeout, retrying... (attempt {attempt + 1}/{max_retries})")
-                                            else:
-                                                return {"error": "Model failed to respond after multiple attempts"}
-                                        
-                                        except Exception as e:
-                                            if attempt < max_retries - 1:
-                                                status_text.text(f"🔄 Connection error, retrying...")
-                                            else:
-                                                return {"error": f"Connection failed: {str(e)}"}
-                                        
-                                        delay = min(10 + (attempt * 5), 30)
-                                        time.sleep(delay)
-                                    
-                                    return {"error": "Model failed to start after maximum retries"}
-                                
-                                # REMOVED: Test connection that causes early returns
-                                # Auto-resume will handle cold starts automatically
                                 
                                 # Add comment column
                                 df['generated_comment'] = ""
@@ -2002,34 +1915,67 @@ class LinkedInExtractorApp:
                                         if len(post_content) > 500:
                                             post_content = post_content[:500] + "..."
                                         
-                                        # UPDATED: Use auto-resume query instead of basic query
-                                        output = query_with_auto_resume({
-                                            "inputs": post_content,  # Handler will add the prompt
-                                            "parameters": {
-                                                "max_new_tokens": 100,
-                                                "temperature": 0.7,      # Same as local
-                                                "do_sample": True        # Same as local
-                                            }
-                                        })
+                                        # Create the prompt
+                                        prompt = f"""You are a business leader who runs multiple companies including Bloor Research International, Allied Worldwide, and Digital Anthropology. You focus on AI+human fusion, outcome-based work models, and keeping humans central to technology advancement.
+
+    Comment Examples - Notice the VARIED openings:
+
+    "A much needed initiative Jessie Schofer! And I think Cheney Hamilton and Richard Skellett can offer a lot more interesting facts and figures around this. The HR shift is one particular domain that has been neglected by far until now. Its high time organizations and individuals start taking this more seriously to excel on the future of work!"
+
+    "Super move by Moderna. I believe this is actually how the future of work should or will look like down the line. Organizations have no chance if they ignore AI, but then again, neglecting the current human workforce on the pretext of integrating AI is also not ethical. What we truly need is what Moderna is doing - the fusion of AI and human workers or what we at Bloor Research International like to call #fusionwork."
+
+    "Absolutely agree with this grounded perspective. The real AI transformation isn't about flashy deployments or headcount cuts. It's about culture, clarity, and commitment to long-term value. At Bloor Research International, our research consistently points to the same truth: the most successful AI transformations are human-focused. Tools evolve fast, but it's people - leaders, teams, and the broader workforce, who determine whether change actually sticks. Resistance, skill gaps, and misaligned goals don't vanish with new tech; they require intentional, human-centric strategies to overcome. It's this kind of realism the AI conversation needs more of."
+
+    "And that's the reason we at Bloor Research International are focused on helping companies adapt to an dynamic pricing model or variable pay model which are linked to outcomes. For too long, traditional output-based models have locked companies into paying fixed costs for fixed hours, regardless of whether those hours actually translate into meaningful business value. When compensation is tied to presence over performance, it encourages activity, not accountability. To truly evolve, especially in the context of India's growing GCC maturity, we need to shift from fixed-cost thinking to outcome-based models. Dynamic pricing, aligned with actual business outcomes, not just time spent, is the future. It incentivizes innovation, fosters ownership, and creates a culture where value - not volume is rewarded. This isn't about cutting costs. It's about realigning them to what truly matters. And that's how we turn potential into performance."
+
+    "Totally agreed! The #futureofwork is build around #fusionwork (AI+human fusion), not AI-only work."
+
+    "Brilliantly said Anita. The narrative that entry-level roles are "vanishing" is not only misleading, it's dangerous. Tech has always evolved, but evolution doesn't mean elimination. It means adaptation. We can't expect a workforce of experienced professionals tomorrow if we pull the ladder up today. Entry-level roles are where curiosity, creativity, and future leadership begin. So, instead of declaring their end, these decision makers in fact should be talking more about how to empower these budding professionals in an AI-first world. Rather than bringing in the confusion, how about they talk more about the FUSION. A fusion of human workers with their digital counterparts."
+
+    "Amazing times ahead for sure. I believe the right mix of AI and human intelligence could help reap multiple benefits in not just science but also other domains. The health sciences industry I think will be one of the most prominent ones to build on this development opening new frontiers in medicine, healthcare and more."
+
+    "Well, I believe this is a much-needed reality check for GCC leaders Sunil. The data-backed shift in roles as mentioned clearly signals that we can't afford to hold onto legacy structures in a world moving this fast. The future of GCCs won't just be defined by what roles remain, but how work is redesigned. What's needed now is a bold shift toward innovative frameworks that enable human + AI fusion. GCC must understand the importance of moving from rigid hierarchies to fluid, outcome-driven structures, powered by this fusion. It's not about replacing people with AI, but redesigning roles to unlock new value from both. And one thing for sure, there are exciting times ahead for those willing to adapt with intention."
+
+    CRITICAL RULES:
+    - NEVER start with "This is", "This nuanced", "The pace of", "The GCC trend", "As we navigate" or similar formal phrases
+    - Use VARIED, NATURAL openings like the examples above
+    - React directly to the specific post content with genuine enthusiasm or agreement
+    - Be conversational and supportive, not formal or analytical
+    - 3-6 complete sentences
+    - Sometimes mention "Bloor Research International", "#fusionwork", "Allied Worldwide"  
+    - Connect to AI+human fusion, business transformation themes when relevant
+    - End with complete sentences
+
+    Read this post and respond with a VARIED, NATURAL opening that shows you actually read it: "{post_content}"
+
+    Comment:"""
                                         
-                                        if "error" in output:
-                                            comment = f"Error: {output['error']}"
-                                        else:
-                                            try:
-                                                # Handle response format properly
-                                                if isinstance(output, list) and len(output) > 0:
-                                                    comment = output[0].get('generated_text', 'No response')
-                                                elif isinstance(output, dict):
-                                                    comment = output.get('generated_text', 'No response')
-                                                else:
-                                                    comment = "Error: Invalid response format"
-                                            except Exception as e:
-                                                comment = f"Error parsing response: {str(e)}"
+                                        try:
+                                            # Generate comment using Together API
+                                            response = client.chat.completions.create(
+                                                model="meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+                                                messages=[
+                                                    {
+                                                        "role": "user",
+                                                        "content": prompt
+                                                    }
+                                                ],
+                                                max_tokens=250,
+                                                temperature=0.7,
+                                                stream=False
+                                            )
+                                            
+                                            # Extract the generated comment
+                                            comment = response.choices[0].message.content.strip()
+                                            
+                                            if not comment.startswith("Error:"):
+                                                successful_generations += 1
+                                            
+                                        except Exception as api_error:
+                                            comment = f"Error: {str(api_error)}"
+                                            app_logger.warning(f"API Error for post {i+1}: {str(api_error)}")
                                         
                                         df.at[i, 'generated_comment'] = comment
-                                        
-                                        if not comment.startswith("Error:"):
-                                            successful_generations += 1
                                         
                                         # Short delay to avoid rate limiting
                                         time.sleep(0.5)

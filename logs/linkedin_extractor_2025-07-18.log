@@ -1,0 +1,99 @@
+2025-07-18 14:25:07 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:25:07 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:29:23 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:29:23 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:29:23 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:29:23 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:29:23 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:29:27 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:29:27 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:29:27 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:29:27 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:29:27 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:29:27 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:29:27 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:29:27 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:29:27 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:29:27 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:13 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:13 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:13 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:13 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:13 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:13 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:13 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:13 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:13 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:13 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:20 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:20 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:20 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:20 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:20 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:24 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:24 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:24 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:24 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:24 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:27 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:27 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:35:27 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:35:27 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:35:27 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:35:27 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:35:27 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:08 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:08 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:08 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:08 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:08 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:10 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:10 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:10 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:10 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:10 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:11 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:11 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:11 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:11 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:11 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:11 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:11 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:11 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:11 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:11 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:14 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:14 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:14 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:14 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:14 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:18 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:18 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:18 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:18 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:18 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
+2025-07-18 14:36:20 | INFO     | src.config:load_config:15 - Loading environment variables
+2025-07-18 14:36:20 | INFO     | src.config:load_config:29 - Trying to load from Streamlit secrets
+2025-07-18 14:36:20 | DEBUG    | src.api.texau_client:__init__:31 - TexAU client initialized with complete authentication
+2025-07-18 14:36:20 | DEBUG    | src.api.linkedin_api:__init__:11 - LinkedIn API client initialized
+2025-07-18 14:36:20 | DEBUG    | src.ui.app:__init__:22 - Initializing LinkedIn Extractor App
